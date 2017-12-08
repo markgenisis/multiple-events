@@ -25,6 +25,7 @@ body, html {
 .bgimg-1 {
     background-image: url('img/bg.jpg');
     min-height: 100%;
+	padding:5% 10%;
 }
 
 .w3-wide {letter-spacing: 10px;}
@@ -32,7 +33,7 @@ body, html {
 
 /* Turn off parallax scrolling for tablets and phones */
 @media only screen and (max-device-width: 1024px) {
-    .bgimg-1, .bgimg-2, .bgimg-3 {
+    .bgimg-1{
         background-attachment: scroll;
     }
 }
@@ -41,8 +42,9 @@ body, html {
 
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
-  <div class="w3-bar" id="myNavbar">
-    <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+  <div class="w3-bar w3-card-2">
+	<span class="w3-bar-item w3-center w3-text-white w3-right" style="text-shadow:1px 2px 0px #909090;font-size:1.2em"><strong>Multiple Events Monitoring System</strong></span>
+   <!-- <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
       <i class="fa fa-bars"></i>
     </a>
     <a href="#home" class="w3-bar-item w3-button">HOME</a>
@@ -51,23 +53,67 @@ body, html {
     <a href="#contact" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-envelope"></i> CONTACT</a>
     <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
       <i class="fa fa-search"></i>
-    </a>
-  </div>
-
-  <!-- Navbar on small screens -->
-  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
-    <a href="#about" class="w3-bar-item w3-button" onclick="toggleFunction()">ABOUT</a>
-    <a href="#portfolio" class="w3-bar-item w3-button" onclick="toggleFunction()">PORTFOLIO</a>
-    <a href="#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a>
-    <a href="#" class="w3-bar-item w3-button">SEARCH</a>
+    </a>-->
   </div>
 </div>
 
 <!-- First Parallax Image with Logo Text -->
-<div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
-  <div class="w3-display-middle" style="white-space:nowrap;">
-    <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">MY <span class="w3-hide-small">WEBSITE</span> LOGO</span>
-  </div>
+<div class="bgimg-1" id="home" >
+  <div class="" style="white-space:nowrap;">
+		<div class="w3-row">
+			<div class="w3-row-padding">
+				<div class="w3-half w3-padding " style="">
+					 <div class="w3-container  w3-padding-32 w3-orange" id="loginFormCon" style="max-width:300px;margin:15% auto;">
+						<div class="w3-container" id="loading_on_login"></div>
+						<form class="w3-form w3-center" id="login_form" method="" action="">
+							<div class="w3-padding-16" style="position:relative;">
+								<span class="fa fa-user fa-lg w3-text-black "style="position:absolute;left:10px;top:40%;z-index:99999;"></span>
+								<input class="w3-input w3-medium w3-round w3-opacity" style="padding-left: 30px;" type="text" id="username" name="username" placeholder="Username" required>
+							</div>
+							<div class="w3-padding-16" style="position:relative;">
+								<span class="fa fa-lock fa-lg w3-text-black "style="position:absolute;left:10px;top:40%;z-index:99999;"></span>
+								<input class="w3-input w3-medium w3-round w3-opacity" style="padding-left: 30px;" type="password" id="password" name="password" placeholder="Password" required>
+							</div>
+							<div class="w3-padding-16" style="position:relative;">
+								<button class="w3-btn w3-btn-block w3-btn-small w3-amber w3-hover-opacity" type="button"> <span class="w3-wide"> Login</span> <i class="fa fa-sign-in fa-lg"></i></button>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="w3-half w3-text-white w3-round w3-padding w3-card-2" style="background-image:url('img/reg.png');">
+					<div class="w3-row">
+						<h3 style="margin-bottom:0px;"><i class="fa fa-user fa-fx"></i> Registration</h3><hr style="margin-top:0px;"/>
+						<form action="javascript:void(0)" method="post">
+							<div class="w3-container">
+								<label>First Name</label>
+								<input type="text" name="firstName" id="firstName" class="w3-input w3-small w3-border" required /> 
+							</div>
+							<div class="w3-container">
+								<label>Middle Name</label>
+								<input type="text" name="middleName" id="middleName" class="w3-input w3-small w3-border" required /> 
+							</div>
+							<div class="w3-container">
+								<label>Last Name</label>
+								<input type="text" name="lastName" id="lastName" class="w3-input w3-small w3-border" required /> 
+							</div>
+							<div class="w3-container">
+								<label>Student Number</label>
+								<input type="text" name="lastName" id="lastName" class="w3-input w3-small w3-border" required /> 
+							</div>
+							<div class="w3-container">
+								<label>Course</label>
+								<input type="text" name="lastName" id="lastName" class="w3-input w3-small w3-border" required /> 
+							</div><br/>
+							<div class="w3-container">
+								<button class="w3-button  w3-round w3-green w3-block"><strong class="w3-wide">SUBMIT</strong></button>
+							</div>
+							<br/>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 </body>
