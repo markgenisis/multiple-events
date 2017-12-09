@@ -64,7 +64,14 @@ body, html {
 			<div class="w3-row-padding">
 				<div class="w3-half w3-padding " style="">
 					 <div class="w3-container  w3-padding-32 w3-orange" id="loginFormCon" style="max-width:300px;margin:15% auto;">
-						<div class="w3-container" id="loading_on_login"></div>
+							<div class="w3-row">
+								<div class="w3-container">
+									<h4><i class="fa fa-lock fa-lg  w3-circle" style="padding:7px 10px;border:2px dashed #fff;color:#fff;text-shadow:1px 2px 1px #000;"></i>
+									<span style="">Multiple Events Login</span> 
+									</h4>
+									<hr style=""/>
+								</div>
+							</div>
 						<form class="w3-form w3-center" id="login_form" method="" action="">
 							<div class="w3-padding-16" style="position:relative;">
 								<span class="fa fa-user fa-lg w3-text-black "style="position:absolute;left:10px;top:40%;z-index:99999;"></span>
