@@ -75,11 +75,11 @@ body, html {
 						<form class="w3-form w3-center" id="login_form" method="" action="">
 							<div class="w3-padding-16" style="position:relative;">
 								<span class="fa fa-user fa-lg w3-text-black "style="position:absolute;left:10px;top:40%;z-index:99999;"></span>
-								<input class="w3-input w3-small w3-round w3-border" style="padding-left: 30px;" type="text" id="usName" name="usName" placeholder="Username" required>
+								<input class="w3-input w3-small w3-border" style="padding-left: 30px;" type="text" id="usName" name="usName" placeholder="Username" required>
 							</div>
 							<div class="w3-padding-16" style="position:relative;">
 								<span class="fa fa-lock fa-lg w3-text-black "style="position:absolute;left:10px;top:40%;z-index:99999;"></span>
-								<input class="w3-input w3-small w3-round w3-border" style="padding-left: 30px;" type="password" id="pword" name="pword" placeholder="Password" required>
+								<input class="w3-input w3-small w3-border" style="padding-left: 30px;" type="password" id="pword" name="pword" placeholder="Password" required>
 							</div>
 							<div class="w3-padding-16" style="position:relative;">
 								<button class="w3-btn w3-btn-block w3-btn-small w3-amber w3-hover-opacity" type="button"> <span class="w3-wide"> Login</span> <i class="fa fa-sign-in fa-lg"></i></button>
@@ -89,7 +89,7 @@ body, html {
 				</div>
 				<div class="w3-half w3-text-white w3-round w3-padding w3-card-2" style="background-image:url('img/reg.png');">
 					<div class="w3-row">
-						<h3 style="margin-bottom:0px;"><i class="fa fa-user fa-fx"></i> Registration</h3><hr style="margin-top:0px;"/>
+						<h3 style="margin-bottom:0px;"><i class="fa fa-user fa-fx"></i> Sign Up</h3><hr style="margin-top:0px;"/>
 						<form action="javascript:void(0)" method="post">
 							<div class="w3-container">
 								<label>First Name</label>
