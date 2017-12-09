@@ -63,23 +63,23 @@ body, html {
 		<div class="w3-row">
 			<div class="w3-row-padding">
 				<div class="w3-half w3-padding " style="">
-					 <div class="w3-container  w3-padding-32 w3-orange" id="loginFormCon" style="max-width:300px;margin:15% auto;">
+					 <div class="w3-container  w3-padding-32 w3-round w3-card-2" id="loginFormCon" style="max-width:350px;margin:15% auto;">
 							<div class="w3-row">
-								<div class="w3-container">
-									<h4><i class="fa fa-lock fa-lg  w3-circle" style="padding:7px 10px;border:2px dashed #fff;color:#fff;text-shadow:1px 2px 1px #000;"></i>
-									<span style="">Multiple Events Login</span> 
+								<div class="w3-row-padding">
+									<h4><i class="fa fa-lock fa-lg  w3-circle" style="padding:7px 10px;border:2px dashed #909090;color:#ccc;text-shadow:1px 2px 1px #000;"></i>
+									<span style="">Login</span> 
 									</h4>
-									<hr style=""/>
+									<hr style="margin:5px"/>
 								</div>
 							</div>
 						<form class="w3-form w3-center" id="login_form" method="" action="">
 							<div class="w3-padding-16" style="position:relative;">
 								<span class="fa fa-user fa-lg w3-text-black "style="position:absolute;left:10px;top:40%;z-index:99999;"></span>
-								<input class="w3-input w3-medium w3-round w3-opacity" style="padding-left: 30px;" type="text" id="username" name="username" placeholder="Username" required>
+								<input class="w3-input w3-small w3-round w3-border" style="padding-left: 30px;" type="text" id="usName" name="usName" placeholder="Username" required>
 							</div>
 							<div class="w3-padding-16" style="position:relative;">
 								<span class="fa fa-lock fa-lg w3-text-black "style="position:absolute;left:10px;top:40%;z-index:99999;"></span>
-								<input class="w3-input w3-medium w3-round w3-opacity" style="padding-left: 30px;" type="password" id="password" name="password" placeholder="Password" required>
+								<input class="w3-input w3-small w3-round w3-border" style="padding-left: 30px;" type="password" id="pword" name="pword" placeholder="Password" required>
 							</div>
 							<div class="w3-padding-16" style="position:relative;">
 								<button class="w3-btn w3-btn-block w3-btn-small w3-amber w3-hover-opacity" type="button"> <span class="w3-wide"> Login</span> <i class="fa fa-sign-in fa-lg"></i></button>
