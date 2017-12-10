@@ -63,10 +63,7 @@ body, html {
 		<div class="w3-row">
 			<div class="w3-row-padding">
 				<div class="w3-half w3-padding " >
-					 <div class="w3-container  w3-padding-32 w3-round w3-card-2" id="loginFormCon" style="max-width:350px;margin:15% auto;background-image:url('img/login.png'); background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;" >
+					 <div class="w3-container  w3-padding-32 w3-round w3-card-2" id="loginFormCon" style="max-width:350px;margin:15% auto;background-image:url('img/login.png');background-attachment: fixed;background-position: center;background-repeat: no-repeat;background-size: cover;" >
 							<div class="w3-row">
 								<div class="w3-row-padding">
 									<h4><i class="fa fa-lock fa-lg  w3-circle" style="padding:7px 10px;border:2px dashed #909090;color:#ccc;text-shadow:1px 2px 1px #000;"></i>
@@ -75,7 +72,7 @@ body, html {
 									<hr style="margin:5px"/>
 								</div>
 							</div>
-						<form class="w3-form w3-center" id="login_form" method="" action="">
+						<form class="w3-form w3-center" id="login_form" method="" action="javascript:void(0);">
 							<div class="w3-padding-16" style="position:relative;">
 								<span class="fa fa-user fa-lg w3-text-black "style="position:absolute;left:10px;top:40%;z-index:99999;"></span>
 								<input class="w3-input w3-small w3-border" style="padding-left: 30px;" type="text" id="usName" name="usName" placeholder="Username" required>
@@ -84,9 +81,7 @@ body, html {
 								<span class="fa fa-lock fa-lg w3-text-black "style="position:absolute;left:10px;top:40%;z-index:99999;"></span>
 								<input class="w3-input w3-small w3-border" style="padding-left: 30px;" type="password" id="pword" name="pword" placeholder="Password" required>
 							</div>
-							<div class="w3-padding-16" style="position:relative;">
-								<button class="w3-btn w3-block w3-btn-small w3-green" type="button"> <span class="w3-wide"> Login</span> <i class="fa fa-sign-in fa-lg"></i></button>
-							</div>
+							<button class="w3-btn w3-block w3-btn-small w3-green" type="button"> <span class="w3-wide" onClick="logmein()"> Login</span> <i class="fa fa-sign-in fa-lg"></i></button>
 						</form>
 					</div>
 				</div>
@@ -125,6 +120,7 @@ body, html {
 		</div>
 	</div>
 </div>
-
 </body>
+<script type="text/javascript" src="js/jquery.js" ></script>
+<script type="application/javascript" src="js/actions.js"></script>
 </html>
