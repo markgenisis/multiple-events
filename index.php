@@ -81,7 +81,7 @@ body, html {
 								<span class="fa fa-lock fa-lg w3-text-black "style="position:absolute;left:10px;top:40%;z-index:99999;"></span>
 								<input class="w3-input w3-small w3-border" style="padding-left: 30px;" type="password" id="pword" name="pword" placeholder="Password" required>
 							</div>
-							<button class="w3-btn w3-block w3-btn-small w3-green" type="button"> <span class="w3-wide" onClick="logmein()"> Login</span> <i class="fa fa-sign-in fa-lg"></i></button>
+							<button class="w3-btn w3-block w3-btn-small w3-green" type="button"  onClick="logmein()"> <span class="w3-wide"> Login</span> <i class="fa fa-sign-in fa-lg"></i></button>
 						</form>
 					</div>
 				</div>

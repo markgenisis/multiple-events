@@ -1,19 +1,19 @@
 // JavaScript Document
 function logmein(){
-	var username=$("#username").val();
-	var password=$("#password").val();
+	var username=$("#usname").val();
+	var password=$("#pword").val();
 	
 	if(username ==""){
 		$("#loginFormCon").effect("shake");
 		$("#loading_on_login").show().html("<div class='w3-panel w3-red w3-padding'>Enter a Username.</div>");
 		setTimeout(function(){$("#loading_on_login").hide("slow");},2000);
-		document.getElementById("username").focus();
+		document.getElementById("usname").focus();
 		return false;
 	}else if(password==""){
 		$("#loginFormCon").effect("shake");
 		$("#loading_on_login").show().html("<div class='w3-panel w3-red w3-padding'>Enter a Password.</div>");
 		setTimeout(function(){$("#loading_on_login").hide("slow");},2000);
-		document.getElementById("password").focus();
+		document.getElementById("pword").focus();
 		return false;
 	}else{
 		var data="username="+username+"&password="+password;
