@@ -71,8 +71,8 @@ body, html {
 									</h4>
 									<hr style="margin:5px"/>
 								</div>
-							</div>
-						<form class="w3-form w3-center" id="login_form" method="" action="javascript:void(0);">
+							</div>						
+						<form class="w3-form w3-center w3-text-black" id="login_form" method="post" action="javascript:void(0);">
 							<div class="w3-padding-16" style="position:relative;">
 								<span class="fa fa-user fa-lg w3-text-black "style="position:absolute;left:10px;top:40%;z-index:99999;"></span>
 								<input class="w3-input w3-small w3-border" style="padding-left: 30px;" type="text" id="usName" name="usName" placeholder="Username" required>
@@ -81,11 +81,11 @@ body, html {
 								<span class="fa fa-lock fa-lg w3-text-black "style="position:absolute;left:10px;top:40%;z-index:99999;"></span>
 								<input class="w3-input w3-small w3-border" style="padding-left: 30px;" type="password" id="pword" name="pword" placeholder="Password" required>
 							</div>
-							<button class="w3-btn w3-block w3-btn-small w3-green" type="button"> <span class="w3-wide" onClick="logmein()"> Login</span> <i class="fa fa-sign-in fa-lg"></i></button>
+								<button class="w3-block w3-button w3-btn-small w3-blue w3-round w3-text-bold"> <span class="w3-wide" onClick="logmein()"> Login</span> <i class="fa fa-sign-in fa-lg"></i></button>
 						</form>
 					</div>
 				</div>
-				<div class="w3-half w3-text-white w3-round w3-padding w3-card-2" style="background-image:url('img/reg.png');">
+				<div class="w3-half w3-text-white w3-round w3-padding w3-card-2" style="background-image:url('img/reg.png');text-shadow:0px 0px 5px #000;">
 					<div class="w3-row">
 						<h3 style="margin-bottom:0px;"><i class="fa fa-user fa-fx"></i> Sign Up</h3><hr style="margin-top:0px;"/>
 						<form action="javascript:void(0)" method="post">
@@ -110,7 +110,7 @@ body, html {
 								<input type="text" name="lastName" id="lastName" class="w3-input w3-small w3-border" required /> 
 							</div><br/>
 							<div class="w3-container">
-								<button class="w3-button  w3-round w3-green w3-block"><strong class="w3-wide">SUBMIT</strong></button>
+								<button class="w3-button w3-blue w3-round w3-hover-blue w3-block"><strong class="w3-wide">SUBMIT</strong></button>
 							</div>
 							<br/>
 						</form>
