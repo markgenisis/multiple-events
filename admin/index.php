@@ -3,15 +3,10 @@
 	if(!isset($_SESSION['ACCESS_TYPE'])){
 		header("location:../");
 		die();
-	}else{
-		
-		header("location:../");
-		die();
 	}else if($_SESSION['ACCESS_TYPE'] != 1){
 		header("location:../");
-		die();
->>>>>>> d0eaf9b5b8469fe37acdbc4699ee5313b3d1c780
-	}
+		die(); 
+	} 
 ?>
 
 <!DOCTYPE html>
