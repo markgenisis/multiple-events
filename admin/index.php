@@ -3,8 +3,9 @@
 	if(!isset($_SESSION['ACCESS_TYPE'])){
 		header("location:../");
 		die();
-	}else{
-		
+	}else if($_SESSION['ACCESS_TYPE'] != 1){
+		header("location:../");
+		die();
 	}
 ?>
 
