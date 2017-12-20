@@ -72,6 +72,7 @@ body, html {
 									<hr style="margin:5px"/>
 								</div>
 							</div>
+                            <div id="loading_on_login"></div>
 						<form class="w3-form w3-center" id="login_form" method="" action="javascript:void(0);">
 							<div class="w3-padding-16" style="position:relative;">
 								<span class="fa fa-user fa-lg w3-text-black "style="position:absolute;left:10px;top:40%;z-index:99999;"></span>
@@ -122,5 +123,6 @@ body, html {
 </div>
 </body>
 <script type="text/javascript" src="js/jquery.js" ></script>
+<script type="text/javascript" src="js/jquery-ui.js" ></script>
 <script type="application/javascript" src="js/actions.js"></script>
 </html>

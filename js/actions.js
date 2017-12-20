@@ -1,13 +1,13 @@
 // JavaScript Document
 function logmein(){
-	var username=$("#usname").val();
+	var username=$("#usName").val();
 	var password=$("#pword").val();
 	
 	if(username ==""){
 		$("#loginFormCon").effect("shake");
 		$("#loading_on_login").show().html("<div class='w3-panel w3-red w3-padding'>Enter a Username.</div>");
 		setTimeout(function(){$("#loading_on_login").hide("slow");},2000);
-		document.getElementById("usname").focus();
+		document.getElementById("usName").focus();
 		return false;
 	}else if(password==""){
 		$("#loginFormCon").effect("shake");
@@ -42,3 +42,21 @@ function logmein(){
 		});
 	}
 }
+// Close the sidebar with the close button
+	function w3_close() {
+		mySidebar.style.display = "none";
+		overlayBg.style.display = "none";
+	}
+
+
+	function open_nav_accord(y) {
+		var x = document.getElementById(y);
+		if (x.className.indexOf("w3-show") == -1) {
+			x.className += " w3-show";
+			x.previousElementSibling.className += " w3-blue";
+		} else { 
+			x.className = x.className.replace(" w3-show", "");
+			x.previousElementSibling.className = 
+			x.previousElementSibling.className.replace(" w3-blue", "");
+		}
+	}
