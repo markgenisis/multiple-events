@@ -115,7 +115,31 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 <script type="text/javascript" src="../js/actions.js"></script>
 <script src="../dist/js/select2.min.js"></script>
 <script>
-
+$('#calendar').fullCalendar({
+		header: {
+			left: 'prev,next today',
+			center: 'title',
+			right: 'month,listWeek'
+		},
+		editable: false,
+		eventLimit: true, // allow "more" link when too many events
+		events: [
+            {
+                title: 'event1',
+                start: '2017-11-01'
+            },
+            {
+                title: 'Holiday',
+                start: '2017-11-05',
+                end: '2017-11-07'
+            },
+            {
+                title: 'event3',
+                start: '2017-11-09T12:30:00',
+                allDay: false // will make the time show
+            }
+        ]
+	});
 </script>
 
 </body>
