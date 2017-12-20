@@ -8,7 +8,7 @@ if(isset($_POST['username'])){
 	$login=$mysqli->query("select * from accounts");
 	while($row=mysqli_fetch_assoc($login)){
 		if($username==$row['username'] && $password==$row['password']){
-			$_SESSION['ACCESS']=$row['type'];
+			$_SESSION['ACCESS_TYPE']=$row['type'];
 			echo $row['type']; 
 			die();
 		}

@@ -58,7 +58,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 	<span class="fa fa-search w3-bar-item fa-lg" style="padding-top:15px !important;"></span>
 	<input class="w3-input w3-bar-item w3-block w3-rest" type="text" placeholder="Search" style="padding-left:10px !important; min-width:50%;">
 	<span class="w3-bar-item w3-right">
-		<a href="../logout.php" class="w3-small "style="text-decoration:none;"><i class="fa fa-sign-out fa-fx"></i> Logout</a>
+		<a href="logout.php" class="w3-small "style="text-decoration:none;"><i class="fa fa-sign-out fa-fx"></i> Logout</a>
 	</span>
 	</div>
 </div>
