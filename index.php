@@ -64,14 +64,15 @@ body, html {
 			<div class="w3-row-padding">
 				<div class="w3-half w3-padding " >
 					 <div class="w3-container  w3-padding-32 w3-round w3-card-2" id="loginFormCon" style="max-width:350px;margin:15% auto;background-image:url('img/login.png');background-attachment: fixed;background-position: center;background-repeat: no-repeat;background-size: cover;" >
-							<div class="w3-row">
+							<div class="w3-row" id="loginFormCon">
 								<div class="w3-row-padding">
 									<h4><i class="fa fa-lock fa-lg  w3-circle" style="padding:7px 10px;border:2px dashed #909090;color:#ccc;text-shadow:1px 2px 1px #000;"></i>
 									<span style="">Login</span> 
 									</h4>
 									<hr style="margin:5px"/>
 								</div>
-							</div>						
+							</div>		
+                            <div id="loading_on_login"></div>				
 						<form class="w3-form w3-center w3-text-black" id="login_form" method="post" action="javascript:void(0);">
 							<div class="w3-padding-16" style="position:relative;">
 								<span class="fa fa-user fa-lg w3-text-black "style="position:absolute;left:10px;top:40%;z-index:99999;"></span>
@@ -81,7 +82,7 @@ body, html {
 								<span class="fa fa-lock fa-lg w3-text-black "style="position:absolute;left:10px;top:40%;z-index:99999;"></span>
 								<input class="w3-input w3-small w3-border" style="padding-left: 30px;" type="password" id="pword" name="pword" placeholder="Password" required>
 							</div>
-								<button class="w3-block w3-button w3-btn-small w3-blue w3-round w3-text-bold"> <span class="w3-wide" onClick="logmein()"> Login</span> <i class="fa fa-sign-in fa-lg"></i></button>
+								<button class="w3-block w3-button w3-btn-small w3-blue w3-round w3-text-bold"  onClick="logmein()"> <span class="w3-wide"> Login</span> <i class="fa fa-sign-in fa-lg"></i></button>
 						</form>
 					</div>
 				</div>
@@ -122,5 +123,6 @@ body, html {
 </div>
 </body>
 <script type="text/javascript" src="js/jquery.js" ></script>
+<script type="text/javascript" src="js/jquery-ui.js" ></script>
 <script type="application/javascript" src="js/actions.js"></script>
 </html>
