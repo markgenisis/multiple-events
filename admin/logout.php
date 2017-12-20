@@ -1,4 +1,4 @@
 <?php
-unset($_SESSION['ACCESS']);
+unset($_SESSION['ACCESS_TYPE']);
 header("location:../");
 die();
