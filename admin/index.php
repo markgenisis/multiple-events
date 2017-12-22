@@ -65,7 +65,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 	</div>
   <div class="w3-container w3-padding-16 w3-bottombar w3-row w3-white">
     <div class="w3-col s4">
-      <img src="../images/avatar.png" class="w3-circle w3-margin-right" style="width:46px">
+      <img src="../img/csc logo.jpg" class="w3-circle w3-margin-right" style="width:46px">
     </div>
     <div class="w3-col s8 w3-bar">
       <span><strong>CSC Officer</strong></span><br>
@@ -75,24 +75,24 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   </div>
   <br/>
   <div class="w3-bar-block w3-text-white" >
-    <a href="#" class="w3-bar-item w3-button w3-padding w3-lime itemSideBar"><i class="fa fa-home fa-fw w3-margin-right"></i>HOME</a> 
-	<div class="w3-dropdown-hover">
+    <a href="./" class="w3-bar-item w3-button w3-padding w3-lime itemSideBar"><i class="fa fa-home fa-fw w3-margin-right"></i>HOME</a> 
+	<div class="w3-dropdown-hover ">
 		 <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding w3-lime itemSideBar"><i class="fa fa-group fa-fw w3-margin-right"></i> STUDENTS <i class="fa fa-caret-down fa-fw w3-right"></i></a>
-		<div class="w3-dropdown-content w3-bar-block w3-lime">
-		  <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user fa-fw"></i> NEW STUDENT</a>
+		<div class="w3-dropdown-content w3-bar-block w3-lime w3-card-4">
+		  <a href="?add_students" class="w3-bar-item w3-button"><i class="fa fa-user fa-fw"></i> NEW STUDENT</a>
 		  <hr style="margin:0px;"/>
-		  <a href="#" class="w3-bar-item w3-button"><i class="fa fa-th fa-fw"></i> STUDENT LIST</a>
+		  <a href="?student_lists" class="w3-bar-item w3-button"><i class="fa fa-th fa-fw"></i> STUDENT LIST</a>
 		</div>
 	</div>
 	<div class="w3-dropdown-hover" style="display:block !important;">
 		 <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding w3-lime itemSideBar"><i class="fa fa-ticket fa-fw w3-margin-right"></i> EVENTS <i class="fa fa-caret-down fa-fw w3-right"></i></a>
-		<div class="w3-dropdown-content w3-bar-block w3-lime">
-		  <a href="#" class="w3-bar-item w3-button"><i class="fa fa-plus fa-fw"></i> NEW EVENT</a>
+		<div class="w3-dropdown-content w3-bar-block w3-lime w3-card-4">
+		  <a href="?add_events" class="w3-bar-item w3-button"><i class="fa fa-plus fa-fw"></i> NEW EVENT</a>
 		  <hr style="margin:0px;"/>
-		  <a href="#" class="w3-bar-item w3-button"><i class="fa fa-list-ol fa-fw"></i> EVENTS LIST</a>
+		  <a href="?event_lists" class="w3-bar-item w3-button"><i class="fa fa-list-ol fa-fw"></i> EVENTS LIST</a>
 		</div>
 	</div>
-
+	 <a href="./logout.php" class="w3-bar-item w3-button w3-padding w3-lime itemSideBar"><i class="fa fa-sign-out fa-fw w3-margin-right"></i>LOGOUT</a> 
   </div>
 </nav>
 
@@ -106,7 +106,48 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 			if(!$_GET){
 				require("home.php");
 			}else{
-				//if(isset($_GET['']))
+				if(isset($_GET['event_lists'])){
+					?>
+                    <h3><span class="fa fa-list"></span> Event Lists</h3>
+                    <hr>
+				<div class="w3-container w3-padding">
+                	
+                    <table id="userListTbl" class="w3-table w3-text-black display dataTable no-footer">
+					<thead>
+						<tr>
+							<th class="w3-center">Title</th>
+							<th class="w3-center">Theme</th>
+							<th class="w3-center">Venue</th>
+							<th class="w3-center">Date</th>
+                            <th class="w3-center"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php
+							$sql = $mysqli->query("SELECT * FROM `events`");
+							while($row = mysqli_fetch_assoc($sql)){
+						?>
+						<tr>
+							<td><?php echo $row['title'];?></td>
+							<td><?php echo $row['theme'];?></td>
+							<td><?php echo $row['venue']; ?></td>
+							<td><?php echo $row['targetdate']; ?></td> 
+							<td>
+								<button class="w3-button w3-green w3-small"><span class="fa fa-edit fa-fx"></span> Edit</button>
+							</td>
+						</tr>
+						<?php }?>
+					</tbody>
+				</table>
+                </div>
+				<?php
+				}
+				if(isset($_GET['add_events'])){?>
+				<h3><span class="fa fa-plus"></span> Create New Events</h3>
+                    <hr>
+                
+				<?php
+                }
 			}
 		?>
 	</div>
