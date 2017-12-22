@@ -96,6 +96,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   </div>
 </nav>
 
+<nav class="w3-sidebar w3-bar-block w3-col m3 w3-hide-small w3-hide-medium w3-card-4" style="max-width:275px;right:0">
+  <h5 class="w3-bar-item">Upcoming Events</h5>
+</nav>
 <!-- Overlay effect when opening sidebar on small screens -->
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
@@ -215,6 +218,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         </div>
 	</div>
 </div>
+
 <script type="text/javascript" src="../js/jquery-ui.js" ></script>  
 <script type="text/javascript" src="../js/actions.js"></script>
 <script src="../dist/js/select2.min.js"></script>
