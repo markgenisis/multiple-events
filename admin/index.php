@@ -74,14 +74,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     </div>
   </div>
   <br/>
-  <div class="w3-bar-block w3-text-white" >
-<<<<<<< HEAD
-    <a href="./" class="w3-bar-item w3-button w3-padding w3-lime itemSideBar"><i class="fa fa-home fa-fw w3-margin-right"></i>HOME</a> 
-	<div class="w3-dropdown-hover ">
-=======
+  <div class="w3-bar-block w3-text-white" >  
     <a href="../admin" class="w3-bar-item w3-button w3-padding w3-lime itemSideBar"><i class="fa fa-home fa-fw w3-margin-right"></i>HOME</a> 
-	<div class="w3-dropdown-hover">
->>>>>>> branch 'master' of https://github.com/markgenisis/multiple-events.git
+	<div class="w3-dropdown-hover"> 
 		 <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding w3-lime itemSideBar"><i class="fa fa-group fa-fw w3-margin-right"></i> STUDENTS <i class="fa fa-caret-down fa-fw w3-right"></i></a>
 		<div class="w3-dropdown-content w3-bar-block w3-lime w3-card-4">
 		  <a href="?add_students" class="w3-bar-item w3-button"><i class="fa fa-user fa-fw"></i> NEW STUDENT</a>
@@ -105,8 +100,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <!-- !PAGE CONTENT! -->
-<div class="w3-main w3-padding" style="margin-left:240px">
-	<div class="w3-container w3-card w3-white">
+<div class="w3-main w3-padding " style="margin-left:240px">
+	<div class="w3-col m9">
+    <div class="w3-container w3-card w3-white">
+    
 		<?php
 			if(!$_GET){
 				require("home.php");
@@ -150,11 +147,72 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 				if(isset($_GET['add_events'])){?>
 				<h3><span class="fa fa-plus"></span> Create New Events</h3>
                     <hr>
-                
+                <div class="w3-container" style="">
+					<div class="w3-row"  style="min-width:250px; max-width:600px; " >
+                    	<form action="javascript:void(0);" onsubmit="return addNewUserFromAdmin()" class="w3-container w3-margin">
+							<div class="w3-row">
+							  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Event Title:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Title:</b></div>
+								<div class="w3-col s12 l7 m7">
+								  <input class="w3-input w3-border" name="title" id="title" type="text" placeholder="Event Title" required />
+								</div>
+							</div>
+                            <div class="w3-row">
+							  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Event Theme:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Theme:</b></div>
+								<div class="w3-col s12 l7 m7">
+								  <input class="w3-input w3-border" name="theme" id="theme" type="text" placeholder="Theme" required />
+								</div>
+							</div>
+                            
+                           
+                            <div class="w3-row">
+							  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Proponents:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Proponents:</b></div>
+								<div class="w3-col s12 l7 m7">
+								  <input class="w3-input w3-border" name="theme" id="theme" type="text" placeholder="Proponents" required />
+								</div>
+							</div>
+                             
+                            <div class="w3-row">
+							  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> In Cooperation with:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> In Cooperation with::</b></div>
+								<div class="w3-col s12 l7 m7">
+								  <input class="w3-input w3-border" name="theme" id="theme" type="text" placeholder="In Cooperation with:" required />
+								</div>
+							</div>
+                            
+                            <div class="w3-row">
+							  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Venue:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Venue:</b></div>
+								<div class="w3-col s12 l7 m7">
+								  <input class="w3-input w3-border" name="theme" id="theme" type="text" placeholder="Venue" required />
+								</div>
+							</div>
+                            
+                            <div class="w3-row">
+							  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Participants:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Participants:</b></div>
+								<div class="w3-col s12 l7 m7">
+								  <input class="w3-input w3-border" name="theme" id="theme" type="text" placeholder="Participants" required />
+								</div>
+							</div>
+                            
+                             <div class="w3-row">
+							  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Target Date:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Target Date:</b></div>
+								<div class="w3-col s12 l7 m7">
+								  <input class="w3-input w3-border" name="theme" id="theme" type="text" placeholder="Target Date" required />
+								</div>
+							</div>
+                            
+                            <div class="w3-row">
+							  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Fund Source:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Fund Source:</b></div>
+								<div class="w3-col s12 l7 m7">
+								  <input class="w3-input w3-border" name="theme" id="theme" type="text" placeholder="Fund Source" required />
+								</div>
+							</div>
+                         </form>
+                    </div>
+				</div>
 				<?php
                 }
 			}
 		?>
+        </div>
 	</div>
 </div>
 <script type="text/javascript" src="../js/jquery-ui.js" ></script>  
