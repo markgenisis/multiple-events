@@ -118,7 +118,6 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                     <h3><span class="fa fa-list"></span> Event Lists</h3>
                     <hr>
 				<div class="w3-container w3-padding">
-                	
                     <table id="userListTbl" class="w3-table w3-text-black display dataTable no-footer">
 					<thead>
 						<tr>
@@ -214,7 +213,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                     </div>
 				</div>
 				<?php
-                }
+                }else if(isset($_GET['add_students'])){
+					require("addStudes.php");
+				}else if(isset($_GET['student_lists'])){
+					require("studList.php");
+				}
 			}
 		?>
         </div>
