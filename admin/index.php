@@ -97,7 +97,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 </nav>
 
 <nav class="w3-sidebar w3-bar-block w3-col m3 w3-hide-small w3-hide-medium w3-card-4" style="max-width:275px;right:0">
-  <h5 class="w3-bar-item">Upcoming Events</h5>
+  <div class="w3-hide-small w3-bar-item w3-lime w3-text-white" style="text-align:center;font-weight:bold;text-shadow:0px 0px 5px #909090;">
+		<a href="../admin/" style="text-decoration:none;">Upcoming Events <i class="fa fa-calendar" style="border:2px dotted #fff;padding:5px;border-radius:50px;" aria-hidden="true"></i> </a>
+	</div>
 </nav>
 <!-- Overlay effect when opening sidebar on small screens -->
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
