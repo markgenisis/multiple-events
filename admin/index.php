@@ -191,7 +191,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                             <div class="w3-row">
 							  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Participants:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Participants:</b></div>
 								<div class="w3-col s12 l7 m7">
-								  <input class="w3-input w3-border" name="theme" id="theme" type="text" placeholder="Participants" required />
+								  <select class="w3-input w3-border" name="theme" id="theme" type="text" placeholder="Participants" required>
+                                  	<option></option>
+                                  </select> 
 								</div>
 							</div>
                             
@@ -208,6 +210,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 								  <input class="w3-input w3-border" name="theme" id="theme" type="text" placeholder="Fund Source" required />
 								</div>
 							</div>
+                            
+                            <button class="w3-button w3-right w3-section w3-blue w3-ripple w3-padding">Submit</button>
+                            
                          </form>
                     </div>
 				</div>
