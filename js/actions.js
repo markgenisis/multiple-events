@@ -120,3 +120,75 @@ $(document).ready(function() {
 		]
 	});
 });
+function addEvents(){
+	var title=$("#title").val();
+	var theme=$("#theme").val();
+	var proponents=$("#proponents").val();
+	var cooperation=$("#cooperation").val();
+	var venue=$("#venue").val();
+	var participants=$("#participants").val();
+	var date=$("#date").val();
+	var source=$("#source").val();
+	
+	$.ajax({
+		type: "POST",
+		url:"../include/actions.php",
+		data: "title="+title+"&theme="+theme+"&proponents="+proponents+"&cooperation="+cooperation+"&venue="+venue+"&participants="+participants+"&date="+date+"&source="+source,
+		success: function(data){
+			console.log();
+			if(data=="SUCCESS"){
+				$("#eventMsg").show().html("<div class='w3-panel w3-green w3-padding'>Event has been created!</div>");
+				setTimeout(function(){$("#eventMsg").hide();},1500);
+				document.getElementById("formEvents").reset();
+			}
+		}
+	});
+}
+function getCourse(){
+	var deptID=$("#department").val();
+	$.ajax({
+		type: "POST",
+		url: "../include/actions.php",
+		data: "deptID="+deptID,
+		success: function(data){
+			console.log(data);
+			$("#selectCourse").html(data);
+		}
+	});
+}
+function addStudents(){
+	var name=$("#name").val();
+	var middle=$("#middlename").val();
+	var surname=$("#surname").val();
+	var idNum=$("#idNum").val();
+	var course=$("#course").val();
+	var studPass=$("#studPass").val();
+	$.ajax({
+		type: "POST",
+		url: "../include/actions.php",
+		data: "name="+name+"&middle="+middle+"&surname="+surname+"&idNum="+idNum+"&course="+course+"&studPass="+studPass,
+		success: function(data){
+			console.log();
+			if(data=="SUCCESS"){
+				$("#eventMsg").show().html("<div class='w3-panel w3-green w3-padding'>Student has been added!</div>");
+				setTimeout(function(){$("#eventMsg").hide();},1500);
+				document.getElementById("formEvents").reset();
+			}else{
+				$("#eventMsg").show().html("<div class='w3-panel w3-red w3-padding'>Student was already in database!</div>");
+				setTimeout(function(){$("#eventMsg").hide();},1500);
+			}
+		}
+	});
+}
+function findStudent(){
+	var surname=$("#studSurname").val();
+	$.ajax({
+		type: "POST",
+		url: "../include/actions.php",
+		data: "studSurname="+surname,
+		success: function(data){
+			console.log();
+			$("#studentResult").html(data);
+		}
+	});
+}

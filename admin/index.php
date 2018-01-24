@@ -92,6 +92,15 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 		  <a href="?event_lists" class="w3-bar-item w3-button"><i class="fa fa-list-ol fa-fw"></i> EVENTS LIST</a>
 		</div>
 	</div>
+    <div class="w3-dropdown-hover" style="display:block !important;">
+		 <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding w3-lime itemSideBar"><i class="fa fa-ticket fa-fw w3-margin-right"></i> ATTENDANCE <i class="fa fa-caret-down fa-fw w3-right"></i></a>
+		<div class="w3-dropdown-content w3-bar-block w3-lime w3-card-4">
+		  
+		  <a href="?attendance_sheet" class="w3-bar-item w3-button"><i class="fa fa-list-ol fa-fw"></i> ATTENDANCE SHEET</a>
+           <hr style="margin:0px;"/>
+		  <a href="?attendance" class="w3-bar-item w3-button"><i class="fa fa-list-ol fa-fw"></i> VIEW ATTENDANCE</a>
+		</div>
+	</div>
 	 <a href="./logout.php" class="w3-bar-item w3-button w3-padding w3-lime itemSideBar"><i class="fa fa-sign-out fa-fw w3-margin-right"></i>LOGOUT</a> 
   </div>
 </nav>
@@ -99,7 +108,21 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 <nav class="w3-sidebar w3-bar-block w3-col m3 w3-hide-small w3-hide-medium w3-card-4" style="max-width:275px;right:0">
   <div class="w3-hide-small w3-bar-item w3-lime w3-text-white" style="text-align:center;font-weight:bold;text-shadow:0px 0px 5px #909090;border-width:2px;border-style:dashed none;border-color:#fff;margin-top:10px;">
 		<a href="../admin/" style="text-decoration:none;">Upcoming Events <i class="fa fa-calendar" style="border:2px dotted #fff;padding:5px;border-radius:50px;" aria-hidden="true"></i> </a>
+        
 	</div>
+    <hr>
+    <ul class="w3-ul">
+    	<?php  $now=date("M d, Y",time());
+			$events=$mysqli->query("select * from events order by targetdate");
+			while($row=mysqli_fetch_assoc($events)){
+				if(date("M d, Y",$row['targetdate'])>=$now){
+		?>
+        <li class="w3-hover-blue"><?php echo ucwords($row['title']); ?>
+        	<span class="w3-right" style="font-size:10px; margin-top:15px; position:relative;"><?php echo date("M d, Y @ h:i A",$row['targetdate']); ?></span>
+        </li>
+        
+        <?php } } ?>
+    </ul>
 </nav>
 <!-- Overlay effect when opening sidebar on small screens -->
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
@@ -122,22 +145,22 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 					<thead>
 						<tr>
 							<th class="w3-center">Title</th>
-							<th class="w3-center">Theme</th>
 							<th class="w3-center">Venue</th>
+							<th class="w3-center">Participants</th>
 							<th class="w3-center">Date</th>
                             <th class="w3-center"></th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php
-							$sql = $mysqli->query("SELECT * FROM `events`");
+							$sql = $mysqli->query("SELECT * FROM `events` order by targetdate");
 							while($row = mysqli_fetch_assoc($sql)){
 						?>
 						<tr>
 							<td><?php echo $row['title'];?></td>
-							<td><?php echo $row['theme'];?></td>
-							<td><?php echo $row['venue']; ?></td>
-							<td><?php echo $row['targetdate']; ?></td> 
+							<td><?php echo $row['venue']; ?></td> 
+							<td><?php echo $row['participants'];?></td>
+							<td><?php echo date("M d, Y @ h:i A",$row['targetdate']); ?></td> 
 							<td>
 								<button class="w3-button w3-green w3-small"><span class="fa fa-edit fa-fx"></span> Edit</button>
 							</td>
@@ -152,8 +175,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 				<h3><span class="fa fa-plus"></span> Create New Events</h3>
                     <hr>
                 <div class="w3-container" style="">
+                	<div class="" id="eventMsg"></div>
 					<div class="w3-row"  style="min-width:250px; max-width:600px; " >
-                    	<form action="javascript:void(0);" onsubmit="return addNewUserFromAdmin()" class="w3-container w3-margin">
+                    	<form action="javascript:void(0);" onsubmit="return addEvents()" id="formEvents" class="w3-container w3-margin">
 							<div class="w3-row">
 							  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Event Title:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Title:</b></div>
 								<div class="w3-col s12 l7 m7">
@@ -171,29 +195,35 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                             <div class="w3-row">
 							  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Proponents:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Proponents:</b></div>
 								<div class="w3-col s12 l7 m7">
-								  <input class="w3-input w3-border" name="theme" id="theme" type="text" placeholder="Proponents" required />
+								  <input class="w3-input w3-border" name="proponents" id="proponents" type="text" placeholder="Proponents" required />
 								</div>
 							</div>
                              
                             <div class="w3-row">
-							  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> In Cooperation with:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> In Cooperation with::</b></div>
+							  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large">  In Cooperation with:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large">  In Cooperation with::</b></div>
 								<div class="w3-col s12 l7 m7">
-								  <input class="w3-input w3-border" name="theme" id="theme" type="text" placeholder="In Cooperation with:" required />
+								  <input class="w3-input w3-border" name="cooperation" id="cooperation" type="text" placeholder="In Cooperation with:" required />
 								</div>
 							</div>
                             
                             <div class="w3-row">
 							  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Venue:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Venue:</b></div>
 								<div class="w3-col s12 l7 m7">
-								  <input class="w3-input w3-border" name="theme" id="theme" type="text" placeholder="Venue" required />
+								  <input class="w3-input w3-border" name="venue" id="venue" type="text" placeholder="Venue" required />
 								</div>
 							</div>
                             
                             <div class="w3-row">
 							  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Participants:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Participants:</b></div>
 								<div class="w3-col s12 l7 m7">
-								  <select class="w3-input w3-border" name="theme" id="theme" type="text" placeholder="Participants" required>
+								  <select class="w3-input w3-border" name="participants" id="participants" type="text" placeholder="Participants" required>
                                   	<option></option>
+                                    <option>General Assembly</option>
+                                    
+                                    <option>CESD</option>
+                                    <option>TeED</option>
+                                    <option>TED</option>
+                                    <option>NHSD</option>
                                   </select> 
 								</div>
 							</div>
@@ -201,14 +231,14 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                              <div class="w3-row">
 							  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Target Date:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Target Date:</b></div>
 								<div class="w3-col s12 l7 m7">
-								  <input class="w3-input w3-border" name="theme" id="theme" type="text" placeholder="Target Date" required />
+								  <input class="w3-input w3-border" name="date" id="date" type="datetime-local" placeholder="Target Date" required />
 								</div>
 							</div>
                             
                             <div class="w3-row">
 							  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Fund Source:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Fund Source:</b></div>
 								<div class="w3-col s12 l7 m7">
-								  <input class="w3-input w3-border" name="theme" id="theme" type="text" placeholder="Fund Source" required />
+								  <input class="w3-input w3-border" name="source" id="source" type="text" placeholder="Fund Source" required />
 								</div>
 							</div>
                             
@@ -222,6 +252,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 					require("addStudes.php");
 				}else if(isset($_GET['student_lists'])){
 					require("studList.php");
+				}else if(isset($_GET['attendance'])){
+					require("attendance.php");
+				}else if(isset($_GET['attendance_sheet'])){
+					require("sheet.php");
 				}
 			}
 		?>
@@ -242,20 +276,15 @@ $('#calendar').fullCalendar({
 		editable: false,
 		eventLimit: true, // allow "more" link when too many events
 		events: [
-            {
-                title: 'event1',
-                start: '2017-11-01'
+           <?php
+		   	$events=$mysqli->query("select * from events");
+			while($row=mysqli_fetch_assoc($events)){
+		   ?>
+		    {
+                title: '<?php echo ucwords($row['title'])." (".date("h:i A",$row['targetdate']).")"; ?>',
+                start: '<?php echo date("Y-m-d",$row['targetdate']); ?>'
             },
-            {
-                title: 'Holiday',
-                start: '2017-11-05',
-                end: '2017-11-07'
-            },
-            {
-                title: 'event3',
-                start: '2017-11-09T12:30:00',
-                allDay: false // will make the time show
-            }
+           <?php } ?>
         ]
 	});
 </script>
