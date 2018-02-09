@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/w3.css">
 <link rel="stylesheet" type="text/css" href="google/fafa.css">
+
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
 body, html {
@@ -38,7 +39,7 @@ body, html {
     }
 }
 </style>
-<body>
+<body onload="">
 
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
@@ -104,11 +105,11 @@ body, html {
 							</div>
 							<div class="w3-container">
 								<label>Student Number</label>
-								<input type="text" name="lastName" id="lastName" class="w3-input w3-small w3-border" required /> 
+								<input type="text" name="studNum" onkeyup="return seperate()" maxlength="12" id="studNum" class="w3-input w3-small w3-border" required /> 
 							</div>
 							<div class="w3-container">
 								<label>Course</label>
-								<input type="text" name="lastName" id="lastName" class="w3-input w3-small w3-border" required /> 
+								<input type="text" name="aaa" id="aaa" class="w3-input w3-small w3-border" required /> 
 							</div><br/>
 							<div class="w3-container">
 								<button class="w3-button w3-blue w3-round w3-hover-blue w3-block"><strong class="w3-wide">SUBMIT</strong></button>
@@ -124,5 +125,12 @@ body, html {
 </body>
 <script type="text/javascript" src="js/jquery.js" ></script>
 <script type="text/javascript" src="js/jquery-ui.js" ></script>
+<script>
+function seperate(){
+	var x = $('#studNum').val();
+	var valaa = x.replace(/(\d{4})(\d{2})(\d{4})/, "$1-$2-$3");
+	$('#studNum').val(valaa);
+}
+</script>
 <script type="application/javascript" src="js/actions.js"></script>
 </html>
