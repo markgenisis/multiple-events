@@ -298,7 +298,7 @@ final class Barcode39 {
 			imagegif($img, $filename);
 		// display image
 		} else {
-			header("Content-type: image/gif");
+			header("Content-type: image/jpeg");
 			imagegif($img);
 		}
 		

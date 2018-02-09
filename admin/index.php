@@ -1,5 +1,6 @@
 <?php
 	include("../include/dbcon.php");
+	
 	if(!isset($_SESSION['ACCESS_TYPE'])){
 		header("location:../");
 		die();
@@ -79,7 +80,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 	<div class="w3-dropdown-hover"> 
 		 <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding w3-lime itemSideBar"><i class="fa fa-group fa-fw w3-margin-right"></i> STUDENTS <i class="fa fa-caret-down fa-fw w3-right"></i></a>
 		<div class="w3-dropdown-content w3-bar-block w3-lime w3-card-4">
-		  <a href="?add_students" class="w3-bar-item w3-button"><i class="fa fa-user fa-fw"></i> NEW STUDENT</a>
+		  <a href="?add_students" class="w3-bar-item w3-button"><i class="fa fa-user fa-fw"></i> REGISTRATION</a>
 		  <hr style="margin:0px;"/>
 		  <a href="?student_lists" class="w3-bar-item w3-button"><i class="fa fa-th fa-fw"></i> STUDENT LIST</a>
 		</div>
@@ -101,6 +102,15 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 		  <a href="?attendance" class="w3-bar-item w3-button"><i class="fa fa-list-ol fa-fw"></i> VIEW ATTENDANCE</a>
 		</div>
 	</div>
+     <div class="w3-dropdown-hover" style="display:block !important;">
+		 <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding w3-lime itemSideBar"><i class="fa fa-camera fa-fw w3-margin-right"></i> GALLERY <i class="fa fa-caret-down fa-fw w3-right"></i></a>
+		<div class="w3-dropdown-content w3-bar-block w3-lime w3-card-4">
+		  
+		  <a href="?add_album" class="w3-bar-item w3-button"><i class="fa fa-list-ol fa-fw"></i> ADD ALBUM</a>
+           <hr style="margin:0px;"/>
+		  <a href="?view_album" class="w3-bar-item w3-button"><i class="fa fa-list-ol fa-fw"></i> VIEW ALBUM</a>
+		</div>
+	</div>
 	 <a href="./logout.php" class="w3-bar-item w3-button w3-padding w3-lime itemSideBar"><i class="fa fa-sign-out fa-fw w3-margin-right"></i>LOGOUT</a> 
   </div>
 </nav>
@@ -112,10 +122,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 	</div>
     <hr>
     <ul class="w3-ul">
-    	<?php  $now=date("M d, Y",time());
+    	<?php  $now=time();
 			$events=$mysqli->query("select * from events order by targetdate");
 			while($row=mysqli_fetch_assoc($events)){
-				if(date("M d, Y",$row['targetdate'])>=$now){
+				if($row['targetdate']>=$now){
 		?>
         <li class="w3-hover-blue"><?php echo ucwords($row['title']); ?>
         	<span class="w3-right" style="font-size:10px; margin-top:15px; position:relative;"><?php echo date("M d, Y @ h:i A",$row['targetdate']); ?></span>
@@ -153,16 +163,16 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 					</thead>
 					<tbody>
 						<?php
-							$sql = $mysqli->query("SELECT * FROM `events` order by targetdate");
+							$sql = $mysqli->query("SELECT * FROM `events` order by `targetdate` DESC");
 							while($row = mysqli_fetch_assoc($sql)){
 						?>
 						<tr>
 							<td><?php echo $row['title'];?></td>
 							<td><?php echo $row['venue']; ?></td> 
 							<td><?php echo $row['participants'];?></td>
-							<td><?php echo date("M d, Y @ h:i A",$row['targetdate']); ?></td> 
+							<td><?php echo date("m/d/Y @ h:i A",$row['targetdate']); ?></td> 
 							<td>
-								<button class="w3-button w3-green w3-small"><span class="fa fa-edit fa-fx"></span> Edit</button>
+								<button class="w3-button w3-red w3-small" onClick="deleteEvent(<?php echo $row['id']; ?>)"><span class="fa fa-times fa-fx"></span> Delete</button>
 							</td>
 						</tr>
 						<?php }?>
@@ -256,6 +266,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 					require("attendance.php");
 				}else if(isset($_GET['attendance_sheet'])){
 					require("sheet.php");
+				}else if(isset($_GET['add_album'])){
+					require("album.php");
+				}else if(isset($_GET['view_album'])){
+					require("viewAlbum.php");
 				}
 			}
 		?>

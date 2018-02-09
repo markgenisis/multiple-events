@@ -26,11 +26,9 @@ function logmein(){
 				if(data == "1"){
 					location="admin/";
 				}else if(data == "2"){
-					location="cashier/";
-				}else if(data == "3"){
-					location="cook/";
+					location="imo/";
 				}else if(data == "4"){
-					location="waiter/";
+					location="student/";
 				}
 				else if(data=="ERROR"){
 					$("#loginFormCon").effect("shake");
@@ -103,6 +101,12 @@ $(document).ready(function() {
 		   { orderable: false, targets: -1 }
 		]
 	});
+	
+	$('#regTbl').DataTable({
+		columnDefs: [
+		   { orderable: false, targets: -1 }
+		]
+	});
 	$('#researchTbl').DataTable({
 		columnDefs: [
 		   { orderable: false, targets: [-2,-1] }
@@ -144,15 +148,15 @@ function addEvents(){
 		}
 	});
 }
-function getCourse(){
+function getCourses(){
 	var deptID=$("#department").val();
 	$.ajax({
 		type: "POST",
-		url: "../include/actions.php",
+		url: "include/actions.php",
 		data: "deptID="+deptID,
 		success: function(data){
 			console.log(data);
-			$("#selectCourse").html(data);
+			$("#course").html(data);
 		}
 	});
 }
@@ -182,13 +186,173 @@ function addStudents(){
 }
 function findStudent(){
 	var surname=$("#studSurname").val();
+	var course=$("#courseID").val();
 	$.ajax({
 		type: "POST",
 		url: "../include/actions.php",
-		data: "studSurname="+surname,
+		data: "studSurname="+surname+"&courseid="+course,
 		success: function(data){
 			console.log();
 			$("#studentResult").html(data);
 		}
 	});
+}
+function attendance(){
+	var studId=$("#studID").val();
+	var eventId=$("#eventID").val();
+	$.ajax({
+			type: "POST",
+			url: "../include/actions.php",
+			data: "studID="+studId+"&eventID="+eventId,
+			success: function(data){
+				console.log(data);
+				if(data=="SUCCESS"){
+					document.getElementById("attendanceForm").reset();
+				}else if(data =="DUPLICATE"){
+					$("#alertMsg").show().html("<div class='w3-panel w3-red w3-padding'>Student was already on the list.</div>");
+					setTimeout(function(){$("#alertMsg").hide('slow');},2000)
+					document.getElementById("attendanceForm").reset();
+				}else if(data=='ERROR'){
+					$("#alertMsg").show().html("<div class='w3-panel w3-red w3-padding'>Student is not required to attend the event.</div>");
+					setTimeout(function(){$("#alertMsg").hide('slow');},2000)
+					document.getElementById("attendanceForm").reset();
+				}
+			}
+		});
+	
+}
+function registerNow(){
+	var fname=$("#firstName").val();
+	var mname=$("#middleName").val();
+	var lname=$("#lastName").val();
+	var course=$("#course").val();
+	var studNum=$("#studentNum").val();
+	var password=$("#studpassword").val();
+	
+	$.ajax({
+		type: "POST",
+		url: "include/actions.php",
+		data: "fname="+fname+"&mname="+mname+"&lname="+lname+"&course="+course+"&studNum="+studNum+"&studPass="+password,
+		success: function(data){
+			if(data=="SUCCESS"){
+				$("#regMsg").show().html("<div class='w3-panel w3-green w3-padding'>Registration Complete!</div>");
+				setTimeout(function(){$("#regMsg").hide('slow'); document.getElementById("regForm").reset();},2000);
+			}else if(data =="DUPLICATE"){
+				$("#regMsg").show().html("<div class='w3-panel w3-red w3-padding'>Student was already registered!</div>");
+				setTimeout(function(){$("#regMsg").hide('slow'); document.getElementById("regForm").reset();},2000);
+			}
+		}
+	
+	});
+}
+function approveStud(x){
+	$.ajax({
+		type: "POST",
+		url: "../include/actions.php",
+		data: "approved="+x,
+		success: function(data){
+			if(data=="SUCCESS"){
+				$("#eventMsg").show().html("<div class='w3-panel w3-green w3-padding'>Approved!</div>");
+				setTimeout(function(){$("#eventMsg").hide('slow');},2000)
+			}
+		}
+	});
+}
+function disapproveStud(x){
+	$.ajax({
+		type: "POST",
+		url: "../include/actions.php",
+		data: "disapproved="+x,
+		success: function(data){
+			console.log(data);
+			if(data=="SUCCESS"){
+				$("#eventMsg").show().html("<div class='w3-panel w3-green w3-padding'>Disapproved!</div>");
+				setTimeout(function(){$("#eventMsg").hide('slow');},2000)
+			}
+		}
+	});
+}
+function deleteEvent(x){
+	var deleventID=x;
+	$.ajax({
+		type: "POST",
+		url: "../include/actions.php",
+		data: "delEvents="+x,
+		success: function (data){
+			//$("#eventRes").html(data);
+			if(data=="SUCCESS")location.reload();
+		}
+	});
+}
+function getResult(){
+	var eventID=$("#eventID").val();
+	var courseID=$("#course").val();
+	console.log(courseID);
+	$.ajax({
+		type: "POST",
+		url: "../include/actions.php",
+		data: "attEvents="+eventID+"&attcourse="+courseID,
+		success: function (data){
+			
+			$("#eventRes").html(data);
+		}
+	});
+}
+function getDescipline(){
+	var dept=$("#department").val();
+	$.ajax({
+		type: "POST",
+		url: "adminActions.php",
+		data: "department="+dept,
+		success: function(data){
+			console.log(data);
+			$("#descipline").html(data);
+			
+		}
+	});
+}
+function getCourse(){
+	var desc=$("#descipline").val();
+	$.ajax({
+		type: "POST",
+		url: "adminActions.php",
+		data: "descipline="+desc,
+		success: function(data){
+			console.log(data);
+			$("#course").html(data);
+			
+		}
+	});
+}
+function getStudentPending(){
+	var dept=$("#course").val();
+	$.ajax({
+		type: "POST",
+		url: "adminActions.php",
+		data: "course="+dept,
+		success: function(data){
+			console.log(data);
+			$("#studList").html(data);
+		}
+	});
+}
+function addAlbum(){
+	var albumName=$("#albumName").val();
+	if(albumName==""){
+		document.getElementById("albumName").focus();
+		return false;
+	}else{
+		$.ajax({
+			type: "POST",
+			url: "adminActions.php",
+			data: "albumName="+albumName,
+			success: function(data){
+				if(data=="SUCCESS"){
+					$("#albumMsg").show().html("<div class='w3-panel w3-green w3-padding'>Album successfully added!</div>");
+					setTimeout(function(){$("#albumMsg").hide('slow');},2000);
+					setTimeout(function(){location.reload()},3000);
+				}
+			}
+		});
+	}
 }

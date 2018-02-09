@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 24, 2018 at 04:59 AM
+-- Generation Time: Feb 09, 2018 at 06:06 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -45,12 +45,55 @@ INSERT INTO `accounts` (`id`, `username`, `password`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `album`
+--
+
+CREATE TABLE `album` (
+  `id` int(3) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `dateCreated` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `album`
+--
+
+INSERT INTO `album` (`id`, `name`, `dateCreated`) VALUES
+(1, 'CSC ALBUM', '1518147223');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attendace`
+--
+
+CREATE TABLE `attendace` (
+  `id` int(3) NOT NULL,
+  `studentId` varchar(30) NOT NULL,
+  `eventId` int(3) NOT NULL,
+  `date` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `attendace`
+--
+
+INSERT INTO `attendace` (`id`, `studentId`, `eventId`, `date`) VALUES
+(1, '4800153138843', 4, '1517326967'),
+(2, '4800153138843', 2, '1517327103'),
+(3, '4800153138843', 3, '1517327230'),
+(4, '4800153138843', 5, '1517744030');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `course`
 --
 
 CREATE TABLE `course` (
   `id` int(3) NOT NULL,
   `dept_id` int(3) NOT NULL,
+  `descipline` int(2) NOT NULL,
   `course` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -58,9 +101,50 @@ CREATE TABLE `course` (
 -- Dumping data for table `course`
 --
 
-INSERT INTO `course` (`id`, `dept_id`, `course`) VALUES
-(1, 1, 'BSIT'),
-(2, 1, 'BSCS');
+INSERT INTO `course` (`id`, `dept_id`, `descipline`, `course`) VALUES
+(1, 1, 1, 'BSIT'),
+(2, 1, 1, 'BSCS');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dept`
+--
+
+CREATE TABLE `dept` (
+  `id` int(3) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `dept`
+--
+
+INSERT INTO `dept` (`id`, `name`) VALUES
+(1, 'CESD'),
+(2, 'NHSD'),
+(3, 'TeEd'),
+(4, 'TEd');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `descipline`
+--
+
+CREATE TABLE `descipline` (
+  `id` int(3) NOT NULL,
+  `deptId` int(3) NOT NULL,
+  `descipline` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `descipline`
+--
+
+INSERT INTO `descipline` (`id`, `deptId`, `descipline`) VALUES
+(1, 1, 'ITE'),
+(2, 1, 'Eng');
 
 -- --------------------------------------------------------
 
@@ -85,11 +169,7 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `title`, `theme`, `proponents`, `cooperation`, `venue`, `participants`, `targetdate`, `fundsource`) VALUES
-(1, 'Sample', 'Saple theme', 'asdasd', 'asdasd', 'GYM', 'CESD', '1515427200', 'sadasd'),
-(2, 'asasd', 'asd', 'asd', 'asd', 'asd', 'TeED', '1516082400', 'sadas'),
-(3, 'asd', 'asd', 'asd', 'asd', 'asd', 'TeED', '1516586400', 'asd'),
-(4, 'Wala', 'asd', 'asd', 'asd', 'asdasd', 'General Assembly', '1516672800', 'asdasd'),
-(5, 'Sampel', 'asdasd', 'asdasd', 'dfs', 'asdasd', 'CESD', '1516762800', 'asdasdsd');
+(5, 'Convocation', 'adad', 'asd', 'asd', 'asda', 'CESD', '1517752800', 'asdas');
 
 -- --------------------------------------------------------
 
@@ -104,15 +184,18 @@ CREATE TABLE `students` (
   `surname` varchar(255) NOT NULL,
   `course_id` int(3) NOT NULL,
   `student_num` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `active` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `name`, `m_name`, `surname`, `course_id`, `student_num`, `password`) VALUES
-(1, 'Mark Genisis', 'Sanorjo', 'Sabilla', 1, '2018-323-123', '8da5c3e9f3bafb9ac43ca21cc591308d');
+INSERT INTO `students` (`id`, `name`, `m_name`, `surname`, `course_id`, `student_num`, `password`, `active`) VALUES
+(1, 'Mark Genisis', 'Sanorjo', 'Sabilla', 1, '4800153138843', '8da5c3e9f3bafb9ac43ca21cc591308d', 1),
+(2, 'Ma', 'Ge', 'Sa', 2, '1234567', '8da5c3e9f3bafb9ac43ca21cc591308d', 0),
+(4, 'rk', 'ne', 'bi', 1, '12345654', 'sabilla', 2);
 
 --
 -- Indexes for dumped tables
@@ -125,9 +208,33 @@ ALTER TABLE `accounts`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `album`
+--
+ALTER TABLE `album`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `attendace`
+--
+ALTER TABLE `attendace`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `course`
 --
 ALTER TABLE `course`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `dept`
+--
+ALTER TABLE `dept`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `descipline`
+--
+ALTER TABLE `descipline`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -152,9 +259,29 @@ ALTER TABLE `students`
 ALTER TABLE `accounts`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
+-- AUTO_INCREMENT for table `album`
+--
+ALTER TABLE `album`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `attendace`
+--
+ALTER TABLE `attendace`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `dept`
+--
+ALTER TABLE `dept`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `descipline`
+--
+ALTER TABLE `descipline`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `events`
@@ -165,7 +292,7 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
