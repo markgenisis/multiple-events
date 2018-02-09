@@ -79,13 +79,16 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <a href="../student" class="w3-bar-item w3-button w3-padding w3-lime itemSideBar"><i class="fa fa-home fa-fw w3-margin-right"></i>HOME</a> 
 	
     <div class="w3-dropdown-hover" style="display:block !important;">
-		 <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding w3-lime itemSideBar"><i class="fa fa-ticket fa-fw w3-margin-right"></i> ATTENDANCE <i class="fa fa-caret-down fa-fw w3-right"></i></a>
+		 <a href="javascript:void(0);" class="w3-bar-item w3-button w3-padding w3-lime itemSideBar"><i class="fa fa-ticket fa-fw w3-margin-right"></i> PROFILE <i class="fa fa-caret-down fa-fw w3-right"></i></a>
 		<div class="w3-dropdown-content w3-bar-block w3-lime w3-card-4">
 		  
 		  
 		  <a href="?attendance" class="w3-bar-item w3-button"><i class="fa fa-list-ol fa-fw"></i> VIEW ATTENDANCE</a>
+          <a href="?attendance" class="w3-bar-item w3-button"><i class="fa fa-list-ol fa-fw"></i> VIEW ATTENDANCE</a>
 		</div>
 	</div>
+     <a href="" class="w3-bar-item w3-button w3-padding w3-lime itemSideBar"><i class="fa fa-camera fa-fw w3-margin-right"></i> GALLERY</a> 
+      <a href="" class="w3-bar-item w3-button w3-padding w3-lime itemSideBar"><i class="fa fa-info-circle fa-fw w3-margin-right"></i> ABOUT</a> 
 	 <a href="./logout.php" class="w3-bar-item w3-button w3-padding w3-lime itemSideBar"><i class="fa fa-sign-out fa-fw w3-margin-right"></i>LOGOUT</a> 
   </div>
 </nav>
