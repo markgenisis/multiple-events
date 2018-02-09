@@ -10,7 +10,7 @@
                         </div>
                         <div class="w3-half w3-padding">
                         <label>Course:</label>
-                        <select class="w3-input" >
+                        <select class="w3-input" onchange="findStudent()" id="courseID" >
                         <option></option>
                             <?php 
 								$course=$mysqli->query("select * from course");

@@ -115,10 +115,22 @@ function foc(){
         
 	</div>
     <hr>
-    <ul class="w3-ul">
-    	 
-    </ul>
+    <div id="recentList"></div>
+    <input type="hidden" id="eventID" value="<?php echo $_GET['id']; ?>" >
 </nav>
+<script type="application/javascript">
+	setInterval(function(){
+		var eventID=$("#eventID").val();
+		$.ajax({
+			type: "POST",
+			url: "recent.php",
+			data: "eventID="+eventID,
+			success: function(data){
+				document.getElementById("recentList").innerHTML=data;
+			}
+		});
+	},2000);
+</script>
 <!-- Overlay effect when opening sidebar on small screens -->
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
@@ -135,10 +147,15 @@ function foc(){
         <h3 class="w3-center"><?php echo ucwords($row['title']); ?></h3>
         <span class="w3-text-blue-gray w3-right" style="font-size:12px; margin-top:-10px;"><?php echo date("F d, Y @ h:i A",$row['targetdate']); ?></span>
         <hr>
+        <div id="alertMsg"></div>
         <div class="w3-panel" style="margin-left:130px;">
+        
         	<div class="w3-container w3-card-4 w3-padding" style="max-width:500px;">
-            	<label><strong>Student ID No:</strong></label>
-            	<input type="text" class="w3-input" id="studID" >
+            	<form id="attendanceForm"  onsubmit="attendance()" action="javascript:void();">
+                    <label><strong>Student ID No:</strong></label>
+                    <input type="text" class="w3-input" id="studID"  autocomplete='off' >
+                    <input type="hidden" id="eventID" value="<?php echo $_GET['id']; ?>" >
+                </form>
             </div>
         </div>
         <?php  }
@@ -154,7 +171,9 @@ function foc(){
 <script type="text/javascript" src="../js/jquery-ui.js" ></script>  
 <script type="text/javascript" src="../js/actions.js"></script>
 <script src="../dist/js/select2.min.js"></script>
+
 <script>
+
 $('#calendar').fullCalendar({
 		header: {
 			left: 'prev,next today',

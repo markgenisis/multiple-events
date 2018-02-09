@@ -1,3 +1,4 @@
+<?php include "include/dbcon.php"; ?>
 <!DOCTYPE html>
 <html>
 <title>Multiple Events</title>
@@ -90,10 +91,11 @@ body, html {
 				<div class="w3-half w3-text-white w3-round w3-padding w3-card-2" style="background-image:url('img/reg.png');text-shadow:0px 0px 5px #000;">
 					<div class="w3-row">
 						<h3 style="margin-bottom:0px;"><i class="fa fa-user fa-fx"></i> Sign Up</h3><hr style="margin-top:0px;"/>
-						<form action="javascript:void(0)" method="post">
+							<div id="regMsg"></div>
+                        <form action="javascript:void(0)" method="post" id="regForm" onSubmit="registerNow()">
 							<div class="w3-container">
 								<label>First Name</label>
-								<input type="text" name="firstName" id="firstName" class="w3-input w3-small w3-border" required /> 
+								<input type="text" name="firstName" id="firstName" pattern="[A-Za-z]+" title="Letters Only"  class="w3-input w3-small w3-border" required /> 
 							</div>
 							<div class="w3-container">
 								<label>Middle Name</label>
@@ -103,13 +105,39 @@ body, html {
 								<label>Last Name</label>
 								<input type="text" name="lastName" id="lastName" class="w3-input w3-small w3-border" required /> 
 							</div>
-							<div class="w3-container">
-								<label>Student Number</label>
-								<input type="text" name="studNum" onkeyup="return seperate()" maxlength="12" id="studNum" class="w3-input w3-small w3-border" required /> 
+                            <div class="w3-container">
+								<label>Department:</label>
+								<select class="w3-input" id="department" onChange="getCourses()">
+                                	<option></option>
+                                <?php
+									$course=$mysqli->query("select * from dept");
+									while($row=mysqli_fetch_assoc($course)){
+								?>
+                                	<option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
+                                <?php  } ?>
+                                </select>
+							</div>
+                            <div class="w3-container">
+								<label>Course</label>
+                                <div id="selectCourse">
+								<select class="w3-input" id="course">
+                                	<option></option>
+                               <!-- <?php
+									$course=$mysqli->query("select * from course");
+									while($row=mysqli_fetch_assoc($course)){
+								?>
+                                	<option value="<?php echo $row['id']; ?>"><?php echo $row['course']; ?></option>
+                                <?php  } ?> -->
+                                </select>
+                                </div>
 							</div>
 							<div class="w3-container">
-								<label>Course</label>
-								<input type="text" name="aaa" id="aaa" class="w3-input w3-small w3-border" required /> 
+								<label>Student Number</label>
+								<input type="text" name="studentNum" id="studentNum" onKeyUp="seperate();" maxlength="12" class="w3-input w3-small w3-border" required /> 
+							</div>
+                            <div class="w3-container">
+								<label>Password</label>
+								<input type="password" name="password" id="studpassword" class="w3-input w3-small w3-border" required /> 
 							</div><br/>
 							<div class="w3-container">
 								<button class="w3-button w3-blue w3-round w3-hover-blue w3-block"><strong class="w3-wide">SUBMIT</strong></button>
@@ -125,12 +153,12 @@ body, html {
 </body>
 <script type="text/javascript" src="js/jquery.js" ></script>
 <script type="text/javascript" src="js/jquery-ui.js" ></script>
-<script>
-function seperate(){
-	var x = $('#studNum').val();
-	var valaa = x.replace(/(\d{4})(\d{2})(\d{4})/, "$1-$2-$3");
-	$('#studNum').val(valaa);
-}
-</script>
 <script type="application/javascript" src="js/actions.js"></script>
+<script type="application/javascript"> 
+    function seperate(){
+		var x=$("#studentNum").val();
+		var valaa=x.replace(/(\d{4})(\d{2})(\d{4})/,"$1-$2-$3");
+		$("#studentNum").val(valaa);
+	}
+</script>
 </html>
