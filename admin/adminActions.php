@@ -1,6 +1,29 @@
 <?php
 include "../include/dbcon.php";
 
+if(isset($_POST['imagesAlbumId'])){
+	$albumId = $_POST['imagesAlbumId'];
+	$destination = "../gallery/";
+	$c = count($_FILES);
+	$counter = 0;
+	foreach($_FILES as $key => $value){
+		$fileName = $value['name'];
+		$tmpSrc = $value['tmp_name'];
+		
+		if(move_uploaded_file($tmpSrc,$destination.$fileName)){
+			$insert = $mysqli->query("insert into gallery (`albumId`,`imageName`) values ('$albumId','$fileName')");
+			$counter = $counter+1;
+		}
+		
+	}
+	//echo $counter.' '.$c;
+	if($c  == $counter){
+		echo "1";
+	}
+}
+
+
+
 if(isset($_POST['department'])){
 	$deptID=$_POST['department'];
 	$desc=$mysqli->query("select * from descipline where deptId='$deptID'");
@@ -64,6 +87,18 @@ if(isset($_POST['albumName'])){
 	$now=time();
 	$ins=$mysqli->query("insert into album (`name`,`dateCreated`) values ('$album','$now')");
 	if($ins){
+		echo "SUCCESS";
+	}
+}
+
+
+
+
+
+if(isset($_POST['idToDelImages'])){
+	$id = $_POST['idToDelImages'];
+	$del = $mysqli->query("delete from gallery where id='$id'");
+	if($del){
 		echo "SUCCESS";
 	}
 }
