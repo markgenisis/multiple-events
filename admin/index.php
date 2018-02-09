@@ -270,6 +270,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 					require("album.php");
 				}else if(isset($_GET['view_album'])){
 					require("viewAlbum.php");
+				}else if(isset($_GET['addPhotos'])){
+					require("addPhotos.php");
 				}
 			}
 		?>

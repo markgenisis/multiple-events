@@ -356,6 +356,7 @@ function addAlbum(){
 		});
 	}
 }
+ 
 function changePass(){
 	var oldpw=$("#oldpw").val();
 	var newpw=$("#newpw").val();
@@ -380,4 +381,85 @@ function changePass(){
 			}
 		});
 	}
+}
+
+
+/*var file_name = $('#file_name').val();
+	var id = $('#to_doc_user_id').val();
+	var fd = new FormData();
+	var file_data = $('#file_to_upload').get(0).files[0];
+	fd.append("add_to_my_doc", file_data);
+	fd.append("file_name_to_doc", file_name);
+	fd.append("to_doc_user_id", id);
+	$.ajax({
+		url:'process.php',
+		type:'post',
+		contentType:false,
+		processData:false,
+		cache:true,
+		data:fd,
+		success:function(data){
+			if(data == 1 || data == '1'){
+				alert("File Uploaded!");
+				window.location.reload();
+			}else{
+				alert(data);
+			}
+		}
+	})
+*/
+
+
+function addPhotos(x){
+	var fd = new FormData();
+	//var file_data =  var len = document.getElementById('galleryImages').files.length;;
+	console.log(document.getElementById('galleryImages').files.length);
+	 var len = document.getElementById('galleryImages').files.length;
+	 var albumIdImages = $('#albumIdImages').val();
+	//fd.append("addImagesFromForm",file_data);
+	for (var i = 0; i < len; i++) {
+            fd.append("galleryImages" + i, $('#galleryImages').get(0).files[i]);
+			//console.log($('#galleryImages').get(0).files[i]);
+        }
+	fd.append("imagesAlbumId", albumIdImages);
+	//var fd = $('#addImagesToAlbum').serializeArray();
+	//console.log(fd);
+	$.ajax({
+		url:'adminActions.php',
+		type:'post',
+		contentType:false,
+		processData:false,
+		cache:true,
+		data:fd,
+		success:function(data){
+			console.log(data);
+			if(data == 1 || data == '1'){
+				$("#albumMsg").show().html("<div class='w3-panel w3-green w3-padding'>File Uploaded!</div>");
+				setTimeout(function(){$("#albumMsg").hide('slow');},2000);
+					setTimeout(function(){location.reload()},3000);
+			}else{
+				alert(data);
+			}
+		}
+	})
+}
+
+
+
+
+function deleteImgae(x){
+	$.ajax({
+		url:'adminActions.php',
+		type:'post',
+		data:'idToDelImages='+x,
+		success:function(data){
+			if(data == "SUCCESS"){
+				$("#albumMsg").show().html("<div class='w3-panel w3-red w3-padding'>Image Deleted!</div>");
+				setTimeout(function(){$("#albumMsg").hide('slow');},2000);
+				setTimeout(function(){location.reload()},3000);
+			}else{
+				
+			}
+		}
+	}); 
 }
