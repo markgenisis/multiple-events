@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/w3.css">
 <link rel="stylesheet" type="text/css" href="google/fafa.css">
+
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
 body, html {
@@ -39,7 +40,7 @@ body, html {
     }
 }
 </style>
-<body>
+<body onload="">
 
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
@@ -137,10 +138,9 @@ body, html {
                             <div class="w3-container">
 								<label>Password</label>
 								<input type="password" name="password" id="studpassword" class="w3-input w3-small w3-border" required /> 
-							</div>
-							<br/>
+							</div><br/>
 							<div class="w3-container">
-								<button  class="w3-button w3-blue w3-round w3-hover-blue w3-block" ><strong class="w3-wide">SUBMIT</strong></button>
+								<button class="w3-button w3-blue w3-round w3-hover-blue w3-block"><strong class="w3-wide">SUBMIT</strong></button>
 							</div>
 							<br/>
 						</form>
