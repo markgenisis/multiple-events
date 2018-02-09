@@ -1,29 +1,5 @@
 <?php
 include "../include/dbcon.php";
-
-if(isset($_POST['imagesAlbumId'])){
-	$albumId = $_POST['imagesAlbumId'];
-	$destination = "../gallery/";
-	$c = count($_FILES);
-	$counter = 0;
-	foreach($_FILES as $key => $value){
-		$fileName = $value['name'];
-		$tmpSrc = $value['tmp_name'];
-		
-		if(move_uploaded_file($tmpSrc,$destination.$fileName)){
-			$insert = $mysqli->query("insert into gallery (`albumId`,`imageName`) values ('$albumId','$fileName')");
-			$counter = $counter+1;
-		}
-		
-	}
-	//echo $counter.' '.$c;
-	if($c  == $counter){
-		echo "1";
-	}
-}
-
-
-
 if(isset($_POST['department'])){
 	$deptID=$_POST['department'];
 	$desc=$mysqli->query("select * from descipline where deptId='$deptID'");
@@ -92,6 +68,29 @@ if(isset($_POST['albumName'])){
 }
 
 
+
+
+
+if(isset($_POST['imagesAlbumId'])){
+	$albumId = $_POST['imagesAlbumId'];
+	$destination = "../gallery/";
+	$c = count($_FILES);
+	$counter = 0;
+	foreach($_FILES as $key => $value){
+		$fileName = $value['name'];
+		$tmpSrc = $value['tmp_name'];
+		
+		if(move_uploaded_file($tmpSrc,$destination.$fileName)){
+			$insert = $mysqli->query("insert into gallery (`albumId`,`imageName`) values ('$albumId','$fileName')");
+			$counter = $counter+1;
+		}
+		
+	}
+	//echo $counter.' '.$c;
+	if($c  == $counter){
+		echo "1";
+	}
+}
 
 
 
