@@ -356,3 +356,28 @@ function addAlbum(){
 		});
 	}
 }
+function changePass(){
+	var oldpw=$("#oldpw").val();
+	var newpw=$("#newpw").val();
+	var newpw1=$("#newpw1").val();
+	if(newpw!=newpw1){
+		$("#passMsg").show().html("<div class='w3-panel w3-red'>Password do not match!</div>");
+		setTimeout(function(){$("#passMsg").hide('slow');},2000);
+		return false;
+	}else{
+		$.ajax({
+			type: "POST",
+			url: "../include/actions.php",
+			data: "oldpw="+oldpw+"&newpw="+newpw,
+			success: function(data){
+				if(data=="SUCCESS"){
+					$("#passMsg").show().html("<div class='w3-panel w3-green'>Password was successfully changed!</div>");
+					setTimeout(function(){$("#passMsg").hide('slow');},2000);
+				}else{
+					$("#passMsg").show().html("<div class='w3-panel w3-red'>Password do not match!</div>");
+					setTimeout(function(){$("#passMsg").hide('slow');},2000);
+				}
+			}
+		});
+	}
+}
