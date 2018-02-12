@@ -44,14 +44,14 @@
     	&nbsp;
     </div>
     	<div class="w3-col m6 w3-center w3-margin" style=" ">
-        	<form style="">
+        	<form style="" id="changeForm" action="javascript:void(0);">
             	<label>OLD PASSWORD</label>
                 <input type="password" id="oldpw" class="w3-input w3-border"  />
                 <label>NEW PASSWORD</label>
                 <input type="password" id="newpw" class="w3-input w3-border"  />
                 <label>REPEAT PASSWORD</label>
                 <input type="password" id="newpw1" class="w3-input w3-border"  />
-                <button class="w3-btn w3-green w3-margin-top" onclick="changePass()">CHANGE PASSWORD</button>
+                <button type="button" class="w3-btn w3-green w3-margin-top" onclick="changePass()">CHANGE PASSWORD</button>
             </form>
         </div>
     </div>

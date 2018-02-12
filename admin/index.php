@@ -29,8 +29,7 @@
 <script src='../js/datatables.min.js'></script>
 <script src='../js/dataTables.jqueryui.min.js'></script>
 <link href="../research/summernote.css" rel="stylesheet">
-<script src="../research/summernote.min.js"></script>
-<script src='adminActions.js'></script>
+<script src="../research/summernote.min.js"></script> 
 <style>
 html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 .w3-bar-item{
@@ -100,6 +99,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 		  <a href="?attendance_sheet" class="w3-bar-item w3-button"><i class="fa fa-list-ol fa-fw"></i> ATTENDANCE SHEET</a>
            <hr style="margin:0px;"/>
 		  <a href="?attendance" class="w3-bar-item w3-button"><i class="fa fa-list-ol fa-fw"></i> VIEW ATTENDANCE</a>
+          <hr style="margin:0px;"/>
+          <a href="?required" class="w3-bar-item w3-button"><i class="fa fa-list-ol fa-fw"></i> REQUIRED ATTENDANCE</a>
 		</div>
 	</div>
      <div class="w3-dropdown-hover" style="display:block !important;">
@@ -111,6 +112,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 		  <a href="?view_album" class="w3-bar-item w3-button"><i class="fa fa-list-ol fa-fw"></i> VIEW ALBUM</a>
 		</div>
 	</div>
+    <a href="?account" class="w3-bar-item w3-button w3-padding w3-lime itemSideBar"><i class="fa fa-info fa-fw w3-margin-right"></i>MY ACCOUNT</a> 
 	 <a href="./logout.php" class="w3-bar-item w3-button w3-padding w3-lime itemSideBar"><i class="fa fa-sign-out fa-fw w3-margin-right"></i>LOGOUT</a> 
   </div>
 </nav>
@@ -195,9 +197,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 								</div>
 							</div>
                             <div class="w3-row">
-							  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Event Theme:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Theme:</b></div>
+							  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large">  Event Theme:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"> Theme:</b></div>
 								<div class="w3-col s12 l7 m7">
-								  <input class="w3-input w3-border" name="theme" id="theme" type="text" placeholder="Theme" required />
+								  <input class="w3-input w3-border" name="theme" id="theme" type="text" placeholder="Theme"   />
 								</div>
 							</div>
                             
@@ -212,7 +214,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                             <div class="w3-row">
 							  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large">  In Cooperation with:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large">  In Cooperation with::</b></div>
 								<div class="w3-col s12 l7 m7">
-								  <input class="w3-input w3-border" name="cooperation" id="cooperation" type="text" placeholder="In Cooperation with:" required />
+								  <input class="w3-input w3-border" name="cooperation" id="cooperation" type="text" placeholder="In Cooperation with:"  />
 								</div>
 							</div>
                             
@@ -228,7 +230,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 								<div class="w3-col s12 l7 m7">
 								  <select class="w3-input w3-border" name="participants" id="participants" type="text" placeholder="Participants" required>
                                   	<option></option>
-                                    <option>General Assembly</option>
+                                    <option>All Students</option>
                                     
                                     <option>CESD</option>
                                     <option>TeED</option>
@@ -239,16 +241,16 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 							</div>
                             
                              <div class="w3-row">
-							  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Target Date:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Target Date:</b></div>
+							  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Target Date & Time:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Target Date & Time:</b></div>
 								<div class="w3-col s12 l7 m7">
-								  <input class="w3-input w3-border" name="date" id="date" type="datetime-local" placeholder="Target Date" required />
+								  <input class="w3-input w3-border" min="<?php echo date("Y-m-d",time())."T".date("h:i",time()); ?>" name="date" id="date" type="datetime-local" placeholder="Target Date" required />
 								</div>
 							</div>
                             
                             <div class="w3-row">
-							  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large"><span class="w3-text-red">*</span> Fund Source:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"><span class="w3-text-red">*</span> Fund Source:</b></div>
+							  <div class="w3-col m5 l5 w3-padding"><b class="w3-right w3-hide-small w3-large">  Fund Source:</b><b class="w3-left w3-hide-large w3-hide-medium w3-large"> Fund Source:</b></div>
 								<div class="w3-col s12 l7 m7">
-								  <input class="w3-input w3-border" name="source" id="source" type="text" placeholder="Fund Source" required />
+								  <input class="w3-input w3-border" name="source" id="source" type="text" placeholder="Fund Source"  />
 								</div>
 							</div>
                             
@@ -272,6 +274,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 					require("viewAlbum.php");
 				}else if(isset($_GET['addPhotos'])){
 					require("addPhotos.php");
+				}else if(isset($_GET['required'])){
+					require("required.php");
+				}else if(isset($_GET['account'])){
+					require("account.php");
 				}
 			}
 		?>

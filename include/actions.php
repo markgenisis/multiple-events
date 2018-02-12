@@ -11,6 +11,7 @@ if(isset($_POST['username'])){
 			while($row=mysqli_fetch_assoc($login)){
 			if($username==$row['username'] && $password==$row['password']){
 				$_SESSION['ACCESS_TYPE']=$row['type'];
+				$_SESSION['LOGIN_ID']=$row['id'];
 				echo $row['type']; 
 				die();
 			}
@@ -41,10 +42,16 @@ if(isset($_POST['title'])){
 	$date=strtotime($_POST['date']);
 	$source=$_POST['source'];
 	
+	$check=$mysqli->query("select * from events where `title`='$title' and `theme`='$theme' and `proponents`='$proponents' and `cooperation`='$cooperation' and `venue`='$venue' and `participants` = '$participants' and `targetdate`='$date' and `fundsource`='$source'") or die(mysqli_error());
+	$num=mysqli_num_rows($check);
+	if(!$num){
 	$insert=$mysqli->query("insert into events values ('NULL','$title','$theme','$proponents','$cooperation','$venue','$participants','$date','$source')") or die();
+	
+	
 	if($insert){
 		echo "SUCCESS";
 	}
+	}else{ echo "DUPLICATE"; }
 }
 if(isset($_POST['name'])){
 	$name=$_POST['name'];
@@ -139,7 +146,7 @@ if(isset($_POST['studNum'])){
 	$lname=$_POST['lname'];
 	$course=$_POST['course'];
 	$studNum=$_POST['studNum'];
-	$password=$_POST['studPass'];
+	$password=md5($_POST['studPass']);
 	$check=$mysqli->query("select * from students where student_num='$studNum'");
 	$num=mysqli_num_rows($check);
 	if(!$num){
@@ -219,4 +226,15 @@ if(isset($_POST['attEvents'])){
     </tbody>
     </table>
     <?php
+} if(isset($_POST['oldpw'])){
+	$oldpw=md5($_POST['oldpw']);
+	$newpw=md5($_POST['newpw']);
+	$check=$mysqli->query("select * from students where student_num='{$_SESSION['STUD_ID']}' and password='$oldpw'");
+	$num=mysqli_num_rows($check);
+	if($num){
+	$sql=$mysqli->query("update students set `password`='$newpw' where student_num='{$_SESSION['STUD_ID']}'") or die(mysqli_error());
+	if($sql){
+		echo "SUCCESS";
+	}
+	}else echo "ERROR";
 }

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2018 at 06:06 AM
+-- Generation Time: Feb 11, 2018 at 11:30 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -14,6 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `events`
@@ -78,9 +79,6 @@ CREATE TABLE `attendace` (
 --
 
 INSERT INTO `attendace` (`id`, `studentId`, `eventId`, `date`) VALUES
-(1, '4800153138843', 4, '1517326967'),
-(2, '4800153138843', 2, '1517327103'),
-(3, '4800153138843', 3, '1517327230'),
 (4, '4800153138843', 5, '1517744030');
 
 -- --------------------------------------------------------
@@ -173,6 +171,45 @@ INSERT INTO `events` (`id`, `title`, `theme`, `proponents`, `cooperation`, `venu
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `gallery`
+--
+
+CREATE TABLE `gallery` (
+  `id` int(3) NOT NULL,
+  `albumId` int(3) NOT NULL,
+  `imageName` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `gallery`
+--
+
+INSERT INTO `gallery` (`id`, `albumId`, `imageName`) VALUES
+(1, 1, 'BUPC.png'),
+(2, 1, 'libon logo.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `required`
+--
+
+CREATE TABLE `required` (
+  `id` int(3) NOT NULL,
+  `desciplineId` int(3) NOT NULL,
+  `number` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `required`
+--
+
+INSERT INTO `required` (`id`, `desciplineId`, `number`) VALUES
+(1, 1, 5);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `students`
 --
 
@@ -193,7 +230,7 @@ CREATE TABLE `students` (
 
 INSERT INTO `students` (`id`, `name`, `m_name`, `surname`, `course_id`, `student_num`, `password`, `active`) VALUES
 (1, 'Mark Genisis', 'Sanorjo', 'Sabilla', 1, '4800153138843', '8da5c3e9f3bafb9ac43ca21cc591308d', 1),
-(2, 'Ma', 'Ge', 'Sa', 2, '1234567', '8da5c3e9f3bafb9ac43ca21cc591308d', 0),
+(2, 'Ma', 'Ge', 'Sa', 1, '1234567', '8da5c3e9f3bafb9ac43ca21cc591308d', 1),
 (4, 'rk', 'ne', 'bi', 1, '12345654', 'sabilla', 2);
 
 --
@@ -243,6 +280,18 @@ ALTER TABLE `events`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `gallery`
+--
+ALTER TABLE `gallery`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `required`
+--
+ALTER TABLE `required`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `students`
 --
 ALTER TABLE `students`
@@ -287,6 +336,16 @@ ALTER TABLE `descipline`
 --
 ALTER TABLE `events`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `gallery`
+--
+ALTER TABLE `gallery`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `required`
+--
+ALTER TABLE `required`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `students`
 --

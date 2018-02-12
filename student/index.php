@@ -87,8 +87,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
           <a href="?myprofile" class="w3-bar-item w3-button"><i class="fa fa-list-ol fa-fw"></i> MY PROFILE</a>
 		</div>
 	</div>
-     <a href="" class="w3-bar-item w3-button w3-padding w3-lime itemSideBar"><i class="fa fa-camera fa-fw w3-margin-right"></i> GALLERY</a> 
-      <a href="" class="w3-bar-item w3-button w3-padding w3-lime itemSideBar"><i class="fa fa-info-circle fa-fw w3-margin-right"></i> ABOUT</a> 
+     <a href="?gallery" class="w3-bar-item w3-button w3-padding w3-lime itemSideBar"><i class="fa fa-camera fa-fw w3-margin-right"></i> GALLERY</a> 
+      <!--<a href="" class="w3-bar-item w3-button w3-padding w3-lime itemSideBar"><i class="fa fa-info-circle fa-fw w3-margin-right"></i> ABOUT</a> -->
 	 <a href="./logout.php" class="w3-bar-item w3-button w3-padding w3-lime itemSideBar"><i class="fa fa-sign-out fa-fw w3-margin-right"></i>LOGOUT</a> 
   </div>
 </nav>
@@ -247,6 +247,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 				}
 				else if(isset($_GET['myprofile'])){
 					require("profile.php");
+				}else if(isset($_GET['gallery'])){
+					require("gallery.php");
 				}
 			}
 		?>

@@ -10,9 +10,15 @@
 				</form>
 		 </div>
 		 <div>
-		 <?php
+		 
+		</div>
+		<hr />
+		<div class="w3-row w3-padding">
+		<?php
 		
 			$list=$mysqli->query("select * from gallery where albumId='{$_GET['addPhotos']}'");
+			$num=mysqli_num_rows($list);
+			if($num){
 			while($row=mysqli_fetch_assoc($list)){
 		?>
 				<div class="w3-quarter">
@@ -21,11 +27,6 @@
 						<div class="w3-display-bottomright w3-container" style="right:-20px !important;"><a href="javascript:void(0);" onclick="deleteImgae(<?php echo $row['id']?>)" class="w3-button w3-red w3-tiny"><i class="fa fa-trash"></i></a></div>
 					</div>
 				</div>
-		  <?php } ?>
-		</div>
-		
-		<div class="w3-row ">
-		<hr />
-			<div id="studentResult" class="w3-padding"></div>
+		  <?php } } ?>
 		</div>
 	</div>

@@ -139,16 +139,19 @@ function addEvents(){
 		url:"../include/actions.php",
 		data: "title="+title+"&theme="+theme+"&proponents="+proponents+"&cooperation="+cooperation+"&venue="+venue+"&participants="+participants+"&date="+date+"&source="+source,
 		success: function(data){
-			console.log();
+			console.log(data);
 			if(data=="SUCCESS"){
 				$("#eventMsg").show().html("<div class='w3-panel w3-green w3-padding'>Event has been created!</div>");
 				setTimeout(function(){$("#eventMsg").hide();},1500);
 				document.getElementById("formEvents").reset();
+			}else if(data=='DUPLICATE'){
+				$("#eventMsg").show().html("<div class='w3-panel w3-red w3-padding'>Error! Event is already on the database!</div>");
+				setTimeout(function(){$("#eventMsg").hide();},1500);
 			}
 		}
 	});
 }
-function getCourses(){
+function getCoursess(){
 	var deptID=$("#department").val();
 	$.ajax({
 		type: "POST",
@@ -274,6 +277,7 @@ function disapproveStud(x){
 }
 function deleteEvent(x){
 	var deleventID=x;
+	if(confirm("Do you want to delete this event?")){
 	$.ajax({
 		type: "POST",
 		url: "../include/actions.php",
@@ -283,6 +287,7 @@ function deleteEvent(x){
 			if(data=="SUCCESS")location.reload();
 		}
 	});
+	}
 }
 function getResult(){
 	var eventID=$("#eventID").val();
@@ -306,6 +311,32 @@ function getDescipline(){
 		data: "department="+dept,
 		success: function(data){
 			console.log(data);
+			$("#desciplines").html(data);
+			
+		}
+	});
+}
+function getDescipline2(){
+	var dept=$("#department").val();
+	$.ajax({
+		type: "POST",
+		url: "adminActions.php",
+		data: "department="+dept,
+		success: function(data){
+			console.log(data);
+			$("#descipline").html(data);
+			
+		}
+	});
+}
+function getDescipline1(){
+	var dept=$("#department").val();
+	$.ajax({
+		type: "POST",
+		url: "adminActions.php",
+		data: "department="+dept,
+		success: function(data){
+			console.log(data);
 			$("#descipline").html(data);
 			
 		}
@@ -320,6 +351,47 @@ function getCourse(){
 		success: function(data){
 			console.log(data);
 			$("#course").html(data);
+			
+		}
+	});
+}
+function getCourses1(){
+	var desc=$("#descipline").val();
+	$.ajax({
+		type: "POST",
+		url: "adminActions.php",
+		data: "desciplines="+desc,
+		success: function(data){
+			console.log(data);
+			$("#courses").html(data);
+			
+		}
+	});
+}
+function getCourses(){
+	var desc=$("#desciplines").val();
+	$.ajax({
+		type: "POST",
+		url: "adminActions.php",
+		data: "descipline="+desc,
+		success: function(data){
+			console.log(data);
+			$("#courses").html(data);
+			
+		}
+	});
+}
+function saveRequired(){
+	var desc=$("#descipline").val();
+	var requiredNum=$("#requiredNum").val();
+	console.log(requiredNum);
+	$.ajax({
+		type: "POST",
+		url: "adminActions.php",
+		data: "desccc="+desc+"&requiredNum="+requiredNum,
+		success: function(data){
+			$("#requiredMsg").show().html("<div class='w3-panel w3-green w3-padding'>Required number of attendance was saved!</div>");
+			setTimeout(function(){$("#requiredMsg").hide('slow');},2000);
 			
 		}
 	});
@@ -362,7 +434,7 @@ function changePass(){
 	var newpw=$("#newpw").val();
 	var newpw1=$("#newpw1").val();
 	if(newpw!=newpw1){
-		$("#passMsg").show().html("<div class='w3-panel w3-red'>Password do not match!</div>");
+		$("#passMsg").show().html("<div class='w3-panel w3-padding w3-red'>Password do not match!</div>");
 		setTimeout(function(){$("#passMsg").hide('slow');},2000);
 		return false;
 	}else{
@@ -372,10 +444,11 @@ function changePass(){
 			data: "oldpw="+oldpw+"&newpw="+newpw,
 			success: function(data){
 				if(data=="SUCCESS"){
-					$("#passMsg").show().html("<div class='w3-panel w3-green'>Password was successfully changed!</div>");
+					$("#passMsg").show().html("<div class='w3-panel w3-padding w3-green'>Password was successfully changed!</div>");
 					setTimeout(function(){$("#passMsg").hide('slow');},2000);
+					setTimeout(function(){document.getElementById("changeForm").reset();},2000);
 				}else{
-					$("#passMsg").show().html("<div class='w3-panel w3-red'>Password do not match!</div>");
+					$("#passMsg").show().html("<div class='w3-panel w3-padding w3-red'>Password do not match!</div>");
 					setTimeout(function(){$("#passMsg").hide('slow');},2000);
 				}
 			}
@@ -462,4 +535,33 @@ function deleteImgae(x){
 			}
 		}
 	}); 
+}
+function changePassword(){
+	var oldpw=$("#oldpw").val();
+	var newpw=$("#newpw").val();
+	var newpw1=$("#newpw1").val();
+	if(newpw != newpw1){
+		$("#eventMsg").show().html("<div class='w3-panel w3-padding w3-red'>Password do not match.</div>");
+		setTimeout(function(){$("#eventMsg").hide('slow')},2000);
+		$("#newpw1").focus();
+		return false;
+	}else{
+		$.ajax({
+			type: "POST",
+			url: "adminActions.php",
+			data: "oldpw="+oldpw+"&newpw="+newpw,
+			success: function(data){
+				console.log(data);
+				if(data=="SUCCESS"){
+					$("#eventMsg").show().html("<div class='w3-panel w3-padding w3-green'>SUCCESS! Password has been changed!</div>");
+					setTimeout(function(){$("#eventMsg").hide('slow')},2000);
+					setTimeout(function(){location.reload();},3000);
+				}else{
+					$("#eventMsg").show().html("<div class='w3-panel w3-padding w3-red'>Wrong password.</div>");
+					setTimeout(function(){$("#eventMsg").hide('slow')},2000);
+					$("#oldpw").focus();
+				}
+			}
+		});
+	}
 }

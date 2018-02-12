@@ -15,7 +15,7 @@
         </select>
         </div><div class="w3-col m4 w3-padding">
                         <label>Department:</label>	
-                        <select class="w3-input" id="department" onchange="getDescipline();">
+                        <select class="w3-input" id="department" onchange="getDescipline2();">
                         	<option></option>
                             <?php
 								$dept=$mysqli->query("select * from dept");

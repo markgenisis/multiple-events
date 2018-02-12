@@ -17,11 +17,11 @@
                        </div>
                        <div class="w3-col m4 w3-padding">
                         <label>Descipline:</label>	
-                        <select class="w3-input" id="descipline" onchange="getCourse();"></select>
+                        <select class="w3-input" id="desciplines" onchange="getCourses();"></select>
                        </div>
                        <div class="w3-col m4 w3-padding">
                         <label>Course:</label>	
-                        <select class="w3-input" id="course" onchange="getStudentPending()"></select>
+                        <select class="w3-input" id="courses" onchange="getStudentPending()"></select>
                        </div>
                     </div>
                     <hr />

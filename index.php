@@ -107,7 +107,7 @@ body, html {
 							</div>
                             <div class="w3-container">
 								<label>Department:</label>
-								<select class="w3-input" id="department" onChange="getCourses()">
+								<select class="w3-input" id="department" onChange="getCoursess()">
                                 	<option></option>
                                 <?php
 									$course=$mysqli->query("select * from dept");

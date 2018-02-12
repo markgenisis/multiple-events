@@ -155,19 +155,3 @@ if(isset($_POST['desccc'])){
 	}
 	
 }
-if(isset($_POST['oldpw'])){
-	$old=md5($_POST['oldpw']);
-	$new=md5($_POST['newpw']);
-	$sql=$mysqli->query("select * from accounts where id='{$_SESSION['LOGIN_ID']}'");
-	while($row=mysqli_fetch_assoc($sql)){
-		if($old==$row['password']){
-			$update=$mysqli->query("update accounts set password='$new' where id='{$_SESSION['LOGIN_ID']}'") or die(mysqli_error());
-			if($update){
-				echo "SUCCESS";
-			}
-		}else{
-			echo "WRONG PASSWORD";
-		}
-	}
-	
-}
